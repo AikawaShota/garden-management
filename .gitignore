@@ -11,3 +11,6 @@ local_settings.py
 
 # Mac
 .DS_Store
+
+# DrawIO
+*.drawio.bkp
