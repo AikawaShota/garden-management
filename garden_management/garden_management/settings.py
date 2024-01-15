@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # セキュリティの観点からlocal_settings.pyは公開していません。
 # サンプルファイルとしてsample_local_settings.pyを公開していますので、そちらをご参照ください。
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'garden_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,6 +88,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    # 追加のパスワードValidator
+    {
+        'NAME': 'authentication.password_validation.CustomValidator',
+    },
 ]
 
 
@@ -103,10 +109,24 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ユーザモデルの指定
+AUTH_USER_MODEL = 'authentication.User'
+
+"""
+# ログインページのURL
+# ログインが必要な画面にログインしていないユーザがアクセスした際に、
+# 自動的にリダイレクトされるURL
+LOGIN_URL = "authentication:login"
+# ログイン成功時のリダイレクト先URL
+LOGIN_REDIRECT_URL = "lend:equipment-list"
+# ログアウト成功時のリダイレクト先URL
+LOGOUT_REDIRECT_URL = "authentication:login"
+"""
