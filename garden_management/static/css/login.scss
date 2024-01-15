@@ -1,0 +1,90 @@
+header,
+footer {
+    display: none;
+}
+
+body.has-navbar-fixed-top {
+    padding-top: 0;
+}
+
+.login-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url("../img/garden.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: table;
+}
+
+.login-image-text {
+    display: table-cell;
+    vertical-align: middle;
+    text-shadow: 0 0 5px black;
+}
+
+@media screen and (max-width:832px) {
+    .br-pc {
+        display: none;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .login-image {
+        display: none;
+    }
+
+    .login-form {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url("../img/garden.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .title,
+    .label,
+    .input,
+    button.is-outlined:hover {
+        color: #f9f9f9;
+        text-shadow: 0 0 5px black;
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .fas {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .fas:hover {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .input:hover and :not(.input:focus) {
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .input:focus~.icon>.fas {
+        color: #f9f9f9;
+    }
+
+    .input::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+    }
+
+    .input,
+    .button.is-info.is-outlined {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .button.is-info.is-outlined:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+
+    #signup-link {
+        color: #78a0ff;
+    }
+
+    #signup-link:hover {
+        color: #ff78a0;
+    }
+}

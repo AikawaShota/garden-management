@@ -7,7 +7,7 @@ const urlsToCache = [
     '/static/css/style.css',
     '/static/css/login.css',
     '/static/js/scripts.js',
-    '/static/img/sunset_wave.jpg',
+    '/static/img/garden.jpg',
     '/static/fa/css/all.min.css',
     '/static/fa/webfonts/fa-brands-400.eot',
     '/static/fa/webfonts/fa-brands-400.svg',

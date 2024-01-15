@@ -2,163 +2,79 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="robots" content="noindex" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}" />
-        <link rel="stylesheet" href="{% static 'css/bulma.css' %}" />
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-        <title>にわかん</title>
-        <link
-            rel="shortcut icon"
-            href="{% static 'img/favicon.png' %}"
-            type="image/x-icon"
-        />
-        <!-- PWA -->
-        <link rel="manifest" href="{% static 'pwa/manifest.json' %}" />
-        <script>
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", function () {
-                    navigator.serviceWorker.register('{% url "sw.js" %}').then(
-                        function (registration) {
-                            // Registration was successful
-                            console.log(
-                                "ServiceWorker registration successful with scope: ",
-                                registration.scope
-                            );
-                        },
-                        function (err) {
-                            // registration failed :(
-                            console.log(
-                                "ServiceWorker registration failed: ",
-                                err
-                            );
-                        }
-                    );
-                });
-            }
-        </script>
-        <!-- END PWA -->
-    </head>
 
-    <body class="has-navbar-fixed-top">
-        <!-- header -->
-        <header>
-            <nav class="navbar is-transparent is-dark is-fixed-top">
-                <div class="navbar-brand">
-                    <div
-                        class="navbar-burger"
-                        data-target="navbarExampleTransparentExample"
-                    >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>にわかん</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+    <!-- PWA -->
+    <link rel="manifest" href="{% static 'pwa/manifest.json' %}" />
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker.register('{% url "sw.js" %}').then(
+                    function (registration) {
+                        // Registration was successful
+                        console.log(
+                            "ServiceWorker registration successful with scope: ",
+                            registration.scope
+                        );
+                    },
+                    function (err) {
+                        // registration failed :(
+                        console.log(
+                            "ServiceWorker registration failed: ",
+                            err
+                        );
+                    }
+                );
+            });
+        }
+    </script>
+    <!-- END PWA -->
+    {% block head %}
+    {% endblock %}
+</head>
 
-                <div id="navbarExampleTransparentExample" class="navbar-menu">
-                    <div class="navbar-start">
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <p class="navbar-link">
-                                <span class="icon mt-1 mr-0">
-                                    <i class="fas fa-laptop"></i>
-                                </span>
-                                <span>備品管理</span>
-                            </p>
-                            <div class="navbar-dropdown is-boxed">
-                                <a
-                                    class="navbar-item"
-                                    href="{% url 'lend:equipment-list' %}"
-                                >
-                                    備品一覧
-                                </a>
-                                <a class="navbar-item" href="#"> 備品貸出 </a>
-                                <a
-                                    class="navbar-item"
-                                    href="{% url 'lend:equipment-add' %}"
-                                >
-                                    備品追加
-                                </a>
-                            </div>
-                        </div>
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <p class="navbar-link">
-                                <span class="icon mt-1 mr-0">
-                                    <i class="fas fa-pencil-ruler"></i>
-                                </span>
-                                <span>消耗品</span>
-                            </p>
-                            <div class="navbar-dropdown is-boxed">
-                                <a class="navbar-item" href="#"> 消耗品一覧 </a>
-                                <a class="navbar-item" href="#"> 消耗品追加 </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="navbar-end">
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <p class="navbar-link icon-text">
-                                <span class="icon mt-1 mr-0">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                                <span>ユーザー</span>
-                            </p>
-                            <div class="navbar-dropdown is-boxed">
-                                <a class="navbar-item" href="#"> 貸出一覧 </a>
-                                <a class="navbar-item" href="#"> ユーザ情報 </a>
-                            </div>
-                        </div>
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <p class="navbar-link">
-                                <span class="icon mt-1 mr-0">
-                                    <i class="fas fa-user-cog"></i>
-                                </span>
-                                <span>管理者ページ</span>
-                            </p>
-                            <div class="navbar-dropdown is-boxed">
-                                <a
-                                    class="navbar-item"
-                                    href="{% url 'lend:location-list' %}"
-                                >
-                                    保管・利用場所
-                                </a>
-                                <a
-                                    class="navbar-item"
-                                    href="{% url 'authentication:signup' %}"
-                                >
-                                    ユーザ追加
-                                </a>
-                                <a class="navbar-item" href="#"> 貸出履歴 </a>
-                            </div>
-                        </div>
-                    </div>
+<body class="has-navbar-fixed-top">
+    <!-- header -->
+    <header>
+        <nav class="navbar is-transparent is-dark is-fixed-top">
+            <div class="navbar-brand">
+                <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-            </nav>
-        </header>
-        <!-- END header-->
-        <div class="hero is-fullheight-with-navbar">
-            <!-- main -->
-            <main>
-                <div class="container is-max-desktop">
-                    {% block content %} {% endblock %}
-                </div>
-            </main>
-            <!-- END main -->
-            <!-- footer -->
-            <footer class="footer has-background-dark">
-                <div class="content has-text-centered has-text-warning-light">
-                    <p>&copy; 2023 Aikawa Shota.</p>
-                </div>
-            </footer>
-            <!-- END footer -->
+            </div>
+        </nav>
+    </header>
+    <!-- END header-->
+
+    <!-- main -->
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+    <!-- END main -->
+    <!-- footer -->
+    <footer class="footer has-background-dark">
+        <div class="content has-text-centered has-text-warning-light">
+            <p>&copy; 2023 Aikawa Shota.</p>
         </div>
-    </body>
-    <script src="{% static 'js/scripts.js' %}"></script>
-    {% block scripts %} {% endblock %}
+    </footer>
+    <!-- END footer -->
+
+</body>
+<script src="{% static 'js/scripts.js' %}"></script>
+{% block scripts %} {% endblock %}
+
 </html>
