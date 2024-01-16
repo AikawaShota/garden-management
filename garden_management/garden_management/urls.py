@@ -20,8 +20,9 @@ from django.views.generic import RedirectView, TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/authentication/login')),
-    path('authentication/', include('authentication.urls')),
     # PWA
     path('sw.js', (TemplateView.as_view(template_name='sw.js', content_type='application/javascript')), name='sw.js'),
+    path('', RedirectView.as_view(url='/authentication/login')),
+    path('authentication/', include('authentication.urls')),
+    path('plant-management/', include('plant_management.urls')),
 ]
