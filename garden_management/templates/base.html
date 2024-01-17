@@ -1,37 +1,37 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang='ja'>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="robots" content="noindex" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/bulma.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <meta charset='UTF-8' />
+    <meta name='robots' content='noindex' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap' rel='stylesheet' />
+    <link rel='stylesheet' href="{% static 'fa/css/all.min.css' %}" />
+    <link rel='stylesheet' href="{% static 'css/bulma.css' %}" />
+    <link rel='stylesheet' href="{% static 'css/style.css' %}" />
     <title>{% block title %}にわかん - {% endblock %}</title>
-    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+    <link rel='shortcut icon' href="{% static 'img/favicon.png' %}" type='image/x-icon' />
     <!-- PWA -->
-    <link rel="manifest" href="{% static 'pwa/manifest.json' %}" />
+    <link rel='manifest' href="{% static 'pwa/manifest.json' %}" />
     <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", function () {
-                navigator.serviceWorker.register('{% url "sw.js" %}').then(
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register("{% url 'sw.js' %}").then(
                     function (registration) {
                         // Registration was successful
                         console.log(
-                            "ServiceWorker registration successful with scope: ",
+                            'ServiceWorker registration successful with scope: ',
                             registration.scope
                         );
                     },
                     function (err) {
                         // registration failed :(
                         console.log(
-                            "ServiceWorker registration failed: ",
+                            'ServiceWorker registration failed: ',
                             err
                         );
                     }
@@ -44,12 +44,12 @@
     {% endblock %}
 </head>
 
-<body class="has-navbar-fixed-top">
+<body class='has-navbar-fixed-top'>
     <!-- header -->
     <header>
-        <nav class="navbar is-transparent is-dark is-fixed-top">
-            <div class="navbar-brand">
-                <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+        <nav class='navbar is-transparent is-dark is-fixed-top'>
+            <div class='navbar-brand'>
+                <div class='navbar-burger' data-target='navbarExampleTransparentExample'>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -65,16 +65,19 @@
         {% endblock %}
     </main>
     <!-- END main -->
+
     <!-- footer -->
-    <footer class="footer has-background-dark">
-        <div class="content has-text-centered has-text-warning-light">
+    <footer class='footer has-background-dark'>
+        <div class='content has-text-centered has-text-warning-light'>
             <p>&copy; 2023 Aikawa Shota.</p>
         </div>
     </footer>
     <!-- END footer -->
-
 </body>
+
 <script src="{% static 'js/scripts.js' %}"></script>
-{% block scripts %} {% endblock %}
+
+{% block scripts %}
+{% endblock %}
 
 </html>

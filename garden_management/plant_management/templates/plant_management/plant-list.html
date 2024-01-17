@@ -3,16 +3,16 @@
 {% block title %}{{ block.super }}一覧{% endblock %}
 
 {% block main %}
-<div class="hero is-fullheight-with-navbar pt-6">
-    <div class="table-container">
-        <h1 class="title">植物一覧</h1>
-        <table class="table is-bordered is-hoverable is-fullwidth plant-list">
+<div class='hero is-fullheight-with-navbar pt-6'>
+    <div class='table-container'>
+        <h1 class='title'>植物一覧</h1>
+        <table class='table is-bordered is-hoverable is-fullwidth plant-list'>
             <tbody>
                 {% for p in plants %}
                 <tr>
-                    <td class="plant-list-image"><img src="{{ p.image.path.url }}" alt="{{ p.image.name }}"></td>
+                    <td class='plant-list-image'><img src='{{ p.image.path.url }}' alt='{{ p.image.name }}'></td>
                     <td>{{ p.name }}</td>
-                    <td class="plant-list-watering">{{ p.last_watering_date }}</td>
+                    <td class='plant-list-watering'>{{ p.last_watering_date }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
