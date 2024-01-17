@@ -41,7 +41,7 @@ class Plant(models.Model):
         null=True,
         blank=True
     )
-    watering_frequency = models.DurationField(required=True)
+    watering_frequency = models.DurationField()
     last_watering_date = models.DateTimeField()
     description = models.TextField(max_length=4095, blank=True, null=True)
     is_active = models.BooleanField(default=True)
