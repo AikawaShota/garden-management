@@ -1,11 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
-from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserAdmin(UserAdmin):
-
     fieldsets = (
         (None, {'fields': ('email', 'password', 'user_name', 'is_active', 'date_joined')}),
         ('Permissions', {'fields': ('is_staff', 'is_superuser')}),

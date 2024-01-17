@@ -3,7 +3,7 @@ import re
 
 
 class CustomValidator:
-    message = "パスワードは（英大文字・英小文字・数字・記号）のいずれか2つ以上を組み合わせて設定してください。"
+    message = 'パスワードは（英大文字・英小文字・数字・記号）のいずれか2つ以上を組み合わせて設定してください。'
 
     def validate(self, password, user=None):
         type_count = sum([

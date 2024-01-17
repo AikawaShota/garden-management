@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 
 
-# ユーザIDをEmail認証に変更するため、UserManagerをオーバーライドする。
+# username認証をemail認証に変更するため、UserManagerをオーバーライドする。
 class CustomUserManager(UserManager):
     def _create_user(self, email, password, **extra_fields):
         email = self.normalize_email(email)
@@ -36,12 +36,12 @@ class CustomUserManager(UserManager):
         return user
 
 
-# ユーザ
+# カスタムユーザモデル
 class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True, editable=False)
     username_validator = UnicodeUsernameValidator()
-    user_name = models.CharField(max_length=127, verbose_name="ユーザー名")
-    email = models.EmailField(unique=True, verbose_name="メールアドレス")
+    user_name = models.CharField(max_length=127, verbose_name='ユーザー名')
+    email = models.EmailField(unique=True, verbose_name='メールアドレス')
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -55,8 +55,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ('user_name',)
 
     class Meta:
-        verbose_name = "ユーザー"
-        verbose_name_plural = "ユーザー"
+        verbose_name = 'ユーザー'
+        verbose_name_plural = 'ユーザー'
 
     def clean(self):
         super().clean()
