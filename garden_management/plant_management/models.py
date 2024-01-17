@@ -6,7 +6,7 @@ from django.core.validators import MaxValueValidator
 class Image(models.Model):
     image_id = models.AutoField(primary_key=True)
     alt = models.CharField(max_length=255)
-    path = models.ImageField(max_length=2047)
+    path = models.ImageField(upload_to='images/')
 
     class Meta:
         verbose_name = 'Image'
