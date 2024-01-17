@@ -12,7 +12,16 @@
                 <tr>
                     <td class='plant-list-image'><img src='{{ p.image.path.url }}' alt='{{ p.image.name }}'></td>
                     <td>{{ p.name }}</td>
-                    <td class='plant-list-watering'>{{ p.last_watering_date }}</td>
+                    <td class='plant-list-watering'>
+                        <div class='icon-text'>
+                            <span class='icon has-text-info'>
+                                <i class='fas fa-tint'></i>
+                            </span>
+                            <span>
+                                {{ p.last_watering_date }}
+                            </span>
+                        </div>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
