@@ -110,24 +110,31 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 STATIC_URL = '/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # ユーザモデルの指定
 AUTH_USER_MODEL = 'authentication.User'
 
-"""
+
 # ログインページのURL
 # ログインが必要な画面にログインしていないユーザがアクセスした際に、
 # 自動的にリダイレクトされるURL
 LOGIN_URL = "authentication:login"
 # ログイン成功時のリダイレクト先URL
-LOGIN_REDIRECT_URL = "lend:equipment-list"
+LOGIN_REDIRECT_URL = "plant_management:plant-list"
 # ログアウト成功時のリダイレクト先URL
 LOGOUT_REDIRECT_URL = "authentication:login"
-"""
+
+
+# MEDIA（画像ファイルなど）の設定
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

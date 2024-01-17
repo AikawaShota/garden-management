@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/bulma.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <title>にわかん</title>
+    <title>{% block title %}にわかん - {% endblock %}</title>
     <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
     <!-- PWA -->
     <link rel="manifest" href="{% static 'pwa/manifest.json' %}" />
