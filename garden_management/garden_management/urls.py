@@ -18,6 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView, TemplateView
 
+# MEDIA関連
+from . import settings
+from django.contrib.staticfiles.urls import static
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # PWA
@@ -26,3 +31,7 @@ urlpatterns = [
     path('authentication/', include('authentication.urls')),
     path('plant-management/', include('plant_management.urls')),
 ]
+
+# MEDIA（画像配信）の設定
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

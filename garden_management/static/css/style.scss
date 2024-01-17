@@ -14,3 +14,52 @@ button {
 .fa-eye-slash:hover {
     color: #4a4a4a;
 }
+
+
+/* ==========
+table
+========== */
+
+/* table-container */
+@media screen and (min-width: 769px) {
+    .table-container {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .table-container {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+
+/* plant-list */
+.plant-list>tbody>tr>td {
+    vertical-align: middle;
+}
+
+/* img */
+.plant-list-image {
+    padding: 0 !important;
+    text-align: center !important;
+    height: 100px;
+    width: 100px;
+}
+
+.plant-list-image>img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* watering */
+.plant-list-watering {
+    width: 161px;
+}
+
+/* ==========
+END table
+========== */
