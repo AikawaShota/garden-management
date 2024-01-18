@@ -93,7 +93,8 @@ TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
-USE_TZ = True
+# TimeZoneSupportを無効化。
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -118,7 +119,7 @@ AUTH_USER_MODEL = 'authentication.User'
 # 自動的にリダイレクトされるURL
 LOGIN_URL = 'authentication:login'
 # ログイン成功時のリダイレクト先URL
-LOGIN_REDIRECT_URL = 'plant_management:plant-list'
+LOGIN_REDIRECT_URL = 'plant_management:list'
 # ログアウト成功時のリダイレクト先URL
 LOGOUT_REDIRECT_URL = 'authentication:login'
 

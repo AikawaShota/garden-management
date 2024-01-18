@@ -53,7 +53,11 @@ table
 
 /* watering */
 .plant-list-watering {
-  width: 161px;
+  width: 173px;
+}
+
+.toggle-watering-complete:hover .fas {
+  color: white;
 }
 
 /* ==========
