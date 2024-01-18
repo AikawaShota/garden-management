@@ -5,5 +5,7 @@ app_name = 'plant_management'
 
 urlpatterns = [
     # 植物一覧
-    path('plant-list', views.PlantListView.as_view(), name='plant-list')
+    path('list', views.PlantListView.as_view(), name='list'),
+    # 水やり完了
+    path('watering-complete/<int:pk>', views.complete_watering, name='watering-complete')
 ]

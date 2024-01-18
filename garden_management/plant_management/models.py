@@ -45,6 +45,7 @@ class Plant(models.Model):
     last_watering_date = models.DateTimeField()
     description = models.TextField(max_length=4095, blank=True, null=True)
     is_active = models.BooleanField(default=True)
+    priority = models.PositiveSmallIntegerField()
     user = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE
@@ -76,26 +77,6 @@ class RelatedURL(models.Model):
 
     def __str__(self):
         return self.url
-
-
-class PlantOrder(models.Model):
-    plant_order_id = models.AutoField(primary_key=True)
-    plant = models.ForeignKey(
-        Plant,
-        on_delete=models.CASCADE
-    )
-    priority = models.PositiveSmallIntegerField()
-    user = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE
-    )
-
-    class Meta:
-        verbose_name = 'PlantOrder'
-        verbose_name_plural = 'PlantOrders'
-
-    def __str__(self):
-        return f'user:{self.user}, plant:{self.plant}, {self.priority}'
 
 
 class Color(models.Model):

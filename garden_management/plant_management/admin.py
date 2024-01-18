@@ -22,11 +22,6 @@ class RelatedURLAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(models.PlantOrder)
-class PlantOrderAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(models.Color)
 class ColorAdmin(admin.ModelAdmin):
     pass

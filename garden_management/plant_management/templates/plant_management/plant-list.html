@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+{% endblock %}
+
 {% block title %}{{ block.super }}一覧{% endblock %}
 
 {% block main %}
@@ -13,14 +18,33 @@
                     <td class='plant-list-image'><img src='{{ p.image.path.url }}' alt='{{ p.image.name }}'></td>
                     <td>{{ p.name }}</td>
                     <td class='plant-list-watering'>
-                        <div class='icon-text'>
-                            <span class='icon has-text-info'>
-                                <i class='fas fa-tint'></i>
+                        <!-- completed watering button -->
+                        {% if p.watering_state.required is False %}
+                        <button disabled class='button is-dark is-fullwidth is-rounded is-outlined'
+                            data-id='{{ p.plant_id }}'>
+                            <span class='has-icon-left'>
+                                <span class='icon has-text-info'>
+                                    <i class='fas fa-tint'></i>
+                                </span>
+                                {{ p.watering_state.message }}
                             </span>
-                            <span>
-                                {{ p.last_watering_date }}
+                        </button>
+                        {% endif %}
+                        <!-- END completed watering button -->
+                        <!-- watering button -->
+                        {% if p.watering_state.required %}
+                        {% csrf_token %}
+                        <button class='toggle-watering-complete button is-info is-fullwidth is-rounded is-outlined'
+                            data-id='{{ p.plant_id }}'>
+                            <span class='has-icon-left'>
+                                <span class='icon has-text-info'>
+                                    <i class='fas fa-tint'></i>
+                                </span>
+                                {{ p.watering_state.message }}
                             </span>
-                        </div>
+                        </button>
+                        {% endif %}
+                        <!-- END watering button -->
                     </td>
                 </tr>
                 {% endfor %}
@@ -28,4 +52,41 @@
         </table>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    //完了、未完了ボタンを押したときの動き
+    $(document).ready(function () {
+        $('.toggle-watering-complete').click(function () {
+            //1.plantID取得
+            var plantId = $(this).data('id');
+            //2,Ajax送信処理
+            $.ajax({
+                url: '/plant-management/' + 'watering-complete/' + plantId,
+                type: 'POST',
+                dataType: 'json',
+                //3.CSRF処理
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader('X-CSRFToken', $('input[name="csrfmiddlewaretoken"]').val());
+                },
+                //4.Ajax受信処理
+                success: function (data, textStatus, xhr) {
+                    var elem = $(`button[data-id=${plantId}]`);
+                    elem.replaceWith(
+                    `<button disabled class='button is-dark is-fullwidth is-rounded is-outlined'
+                        data-id=${plantId}>
+                        <span class='has-icon-left'>
+                            <span class='icon has-text-info'>
+                                <i class='fas fa-tint'></i>
+                            </span>
+                            ${data['watering-state']['message']}
+                        </span>
+                    </button>`
+                    );
+                },
+            });
+        });
+    });
+</script>
 {% endblock %}
