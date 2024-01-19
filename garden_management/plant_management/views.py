@@ -3,6 +3,8 @@ from . import models
 import datetime
 from django.utils.timezone import make_naive
 from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.core.exceptions import PermissionDenied
 
 
 def get_watering_state(last_watering_date, watering_frequency):
@@ -66,6 +68,12 @@ class PlantListView(generic.ListView):
 # 水やり完了処理
 def complete_watering(request, pk):
     plant = models.Plant.objects.get(pk=pk)
+    if plant.user != request.user:
+        try:
+            raise PermissionDenied()
+        except PermissionDenied:
+            print('You do not have permission to edit.')
+            return redirect('authentication:login')
     plant.last_watering_date = datetime.datetime.now()
     plant.save()
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
