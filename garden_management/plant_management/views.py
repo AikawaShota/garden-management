@@ -41,7 +41,7 @@ def get_watering_state(last_watering_date, watering_frequency):
 # 植物一覧（水やり状態）
 class PlantListView(LoginRequiredMixin, generic.ListView):
     model = models.Plant
-    template_name = 'plant_management/plant-list.html'
+    template_name = 'plant_management/plant_list.html'
     context_object_name = 'plants'
 
     # 取得するデータをカスタマイズする。
@@ -82,3 +82,20 @@ def complete_watering(request, pk):
             'watering-state': get_watering_state(plant.last_watering_date, plant.watering_frequency)
         }
     return JsonResponse(data)
+
+
+# 植物詳細
+class PlantDetailView(LoginRequiredMixin, generic.DetailView):
+    model = models.Plant
+    template_name = 'plant_management/plant_detail.html'
+    context_object_name = 'plant_detail'
+
+    # 水やりの状態（水やりの要否・次回の水やりまでの時間）を保存するcontextを追加する。
+    def get_context_data(self, **kwargs):
+        # 継承元（ListView）のget_context_dataを呼んで、contextを取得。
+        context = super().get_context_data(**kwargs)
+        plants = context['plants']
+        for plant in plants:
+            plant['watering_state'] = get_watering_state(plant['last_watering_date'], plant['watering_frequency'])
+        context['plants'] = plants
+        return context
