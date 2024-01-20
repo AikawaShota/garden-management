@@ -125,5 +125,5 @@ LOGOUT_REDIRECT_URL = 'authentication:login'
 
 
 # MEDIA（画像ファイルなど）の設定
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'

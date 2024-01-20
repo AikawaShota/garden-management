@@ -35,6 +35,11 @@ table
     }
 }
 
+.plant-list {
+    table-layout: fixed;
+    width: 100%;
+}
+
 /* plant-list */
 .plant-list>tbody>tr>td {
     vertical-align: middle;
@@ -49,15 +54,21 @@ table
 }
 
 .plant-list-image>img {
-    height: 100%;
-    width: auto;
+    height: 100px;
     object-fit: cover;
     display: block;
 }
 
+/* description */
+.plant-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* watering */
 .plant-list-watering {
-    width: 173px;
+    width: 128px;
 }
 
 .toggle-watering-complete:hover {
