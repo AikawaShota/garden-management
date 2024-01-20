@@ -5,6 +5,7 @@ from django.utils.timezone import make_naive
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def get_watering_state(last_watering_date, watering_frequency):
@@ -38,7 +39,7 @@ def get_watering_state(last_watering_date, watering_frequency):
 
 
 # 植物一覧（水やり状態）
-class PlantListView(generic.ListView):
+class PlantListView(LoginRequiredMixin, generic.ListView):
     model = models.Plant
     template_name = 'plant_management/plant-list.html'
     context_object_name = 'plants'
@@ -49,7 +50,7 @@ class PlantListView(generic.ListView):
         # .order_by()：priorityの値で降順ソートした後、plant_idで昇順ソートする。
         queryset = self.model.objects \
             .select_related('image') \
-            .values('plant_id', 'name', 'image', 'last_watering_date', 'watering_frequency') \
+            .values('plant_id', 'name', 'description', 'image__path', 'image__alt', 'last_watering_date', 'watering_frequency') \
             .filter(user=self.request.user) \
             .order_by('-priority', 'plant_id')
         return queryset

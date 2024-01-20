@@ -22,6 +22,10 @@ body.has-navbar-fixed-top {
   text-shadow: 0 0 5px black;
 }
 
+#signup-link:hover {
+  color: #ff78a0;
+}
+
 @media screen and (max-width: 832px) {
   .br-pc {
     display: none;
@@ -73,8 +77,5 @@ body.has-navbar-fixed-top {
   }
   #signup-link {
     color: #78a0ff;
-  }
-  #signup-link:hover {
-    color: #ff78a0;
   }
 }/*# sourceMappingURL=login.css.map */
