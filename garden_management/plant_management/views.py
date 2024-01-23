@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
+from . import mixins
 
 
 def get_watering_state(last_watering_date, watering_frequency):
@@ -85,17 +86,15 @@ def complete_watering(request, pk):
 
 
 # 植物詳細
-class PlantDetailView(LoginRequiredMixin, generic.DetailView):
+class PlantDetailView(mixins.OwnerOnlyMixin, LoginRequiredMixin, generic.DetailView):
     model = models.Plant
     template_name = 'plant_management/plant_detail.html'
     context_object_name = 'plant_detail'
 
     # 水やりの状態（水やりの要否・次回の水やりまでの時間）を保存するcontextを追加する。
     def get_context_data(self, **kwargs):
-        # 継承元（ListView）のget_context_dataを呼んで、contextを取得。
+        # 継承元（DetailView）のget_context_dataを呼んで、contextを取得。
         context = super().get_context_data(**kwargs)
-        plants = context['plants']
-        for plant in plants:
-            plant['watering_state'] = get_watering_state(plant['last_watering_date'], plant['watering_frequency'])
-        context['plants'] = plants
+        plant = context['plant_detail']
+        context['watering_state'] = get_watering_state(plant.last_watering_date, plant.watering_frequency)
         return context

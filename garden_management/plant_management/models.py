@@ -83,6 +83,7 @@ class RelatedURL(models.Model):
         Plant,
         on_delete=models.CASCADE,
     )
+    name = models.CharField(max_length=2047)
     url = models.URLField(max_length=2047)
     user = models.ForeignKey(
         get_user_model(),

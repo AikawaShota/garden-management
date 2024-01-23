@@ -1,7 +1,30 @@
+/* ==========
+layout
+========== */
+
+/* Google Font */
 body,
 button {
     font-family: 'Noto Sans JP';
 }
+
+/* リンク */
+a:visited{
+    color: #485FC7;
+}
+
+a:hover{
+    color: #ff78a0;
+}
+
+/* ==========
+END layout
+========== */
+
+
+/* ==========
+パスワード表示切替ボタン
+========== */
 
 #buttonEye,
 #buttonEye1,
@@ -14,6 +37,10 @@ button {
 .fa-eye-slash:hover {
     color: #4a4a4a;
 }
+
+/* ==========
+END パスワード表示切替ボタン
+========== */
 
 
 /* ==========
@@ -79,4 +106,19 @@ table
 
 /* ==========
 END table
+========== */
+
+
+/* ==========
+plant detail
+========== */
+
+#plant-image-container {
+    width: 200px;
+    height: 200px;
+}
+
+
+/* ==========
+END plant detail
 ========== */
