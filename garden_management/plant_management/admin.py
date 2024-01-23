@@ -9,7 +9,7 @@ class ImageCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.Image)
 class ImageAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('image_id', 'alt')
 
 
 @admin.register(models.ImageTag)

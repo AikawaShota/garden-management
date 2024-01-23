@@ -15,10 +15,15 @@
             <tbody>
                 {% for p in plants %}
                 <tr>
-                    <td class='plant-list-image'><img src='/media/{{ p.image__path }}' alt='{{ p.image__alt }}'></td>
+                    <td class='plant-list-image'><img src='/media/{{ p.image__path }}' alt='{{ p.image__alt }}'>
+                    </td>
                     <td>
-                        {{ p.name }}
-                        <p class="has-text-grey-light plant-description"><small>{{ p.description }}</small></p>
+                        <a class='detail-link' href="{% url 'plant_management:detail' pk=p.plant_id %}">
+                            <div>
+                                {{ p.name }}
+                                <p class="has-text-grey-light plant-description"><small>{{ p.description }}</small></p>
+                            </div>
+                        </a>
                     </td>
                     <td class='plant-list-watering'>
                         <!-- completed watering button -->
