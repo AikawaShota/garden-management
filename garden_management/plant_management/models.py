@@ -1,4 +1,6 @@
+import datetime
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator
 
@@ -58,8 +60,10 @@ class Plant(models.Model):
         on_delete=models.SET_DEFAULT,
         default=3
     )
-    watering_frequency = models.DurationField()
-    last_watering_date = models.DateTimeField()
+    watering_frequency = models.DurationField(
+        default=datetime.timedelta(days=1)
+    )
+    last_watering_date = models.DateTimeField(default=timezone.now)
     description = models.TextField(max_length=4095, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     priority = models.PositiveSmallIntegerField()

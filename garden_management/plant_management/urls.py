@@ -10,4 +10,6 @@ urlpatterns = [
     path('watering-complete/<int:pk>', views.complete_watering, name='watering-complete'),
     # 植物詳細
     path('detail/<int:pk>', views.PlantDetailView.as_view(), name='detail'),
+    # 植物追加
+    path('add', views.PlantAddView.as_view(), name='add')
 ]
