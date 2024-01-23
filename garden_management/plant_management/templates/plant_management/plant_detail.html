@@ -8,7 +8,99 @@
 {% block title %}{{ block.super }}植物詳細{% endblock %}
 
 {% block main %}
+<div class='hero is-fullheight-with-navbar'>
+    <div class='hero-body'>
+        <div class='container is-max-desktop'>
+            <section class='pb-3'>
+                <h1 class='title is-3'>{{ plant_detail.name }}</h1>
+                <div id='plant-image-container'>
+                    <img id='plant-image' src='/media/{{ plant_detail.image.path }}' alt='{{ plant_detail.image.alt }}'>
+                </div>
+            </section>
+            <section>
+                <h2 class='title is-4 mb-0'>説明</h2>
+                <p class='pb-5'>{{ plant_detail.description }}</p>
+                <h2 class='title is-4 mb-0'>関連URL</h2>
+                <!-- ForeignKeyを逆参照して関連するurlを取得。 -->
+                {% for url in plant_detail.relatedurl_set.all %}
+                <p><a href='{{ url.url }}' target='_blank'>{{ url.name }}</a> | {{ url.url }}</p>
+                {% endfor %}
+                <div class='mb-5'></div>
+                <h2 class='title is-4 mb-0'>水やり頻度</h2>
+                <p class='pb-5'>{{ plant_detail.watering_frequency }}</p>
+                <h2 class='title is-4 mb-0'>最後に水やりをした日時</h2>
+                <p class='pb-5'>{{ plant_detail.last_watering_date }}</p>
+                <h2 class='title is-4 mb-1'>水やり</h2>
+                <!-- completed watering button -->
+                {% if watering_state.required is False %}
+                <button disabled class='button is-dark is-fullwidth is-rounded is-outlined' data-id='{{ plant_detail.plant_id }}'>
+                    <span class='has-icon-left'>
+                        <span class='icon has-text-info'>
+                            <i class='fas fa-tint'></i>
+                        </span>
+                        {{ watering_state.message }}
+                    </span>
+                </button>
+                {% endif %}
+                <!-- END completed watering button -->
+                <!-- watering button -->
+                {% if watering_state.required %}
+                {% csrf_token %}
+                <button class='toggle-watering-complete button is-info is-fullwidth is-rounded is-outlined'
+                    data-id='{{ plant_detail.plant_id }}'>
+                    <span class='has-icon-left'>
+                        <span class='icon has-text-info'>
+                            <i class='fas fa-tint'></i>
+                        </span>
+                        {{ watering_state.message }}
+                    </span>
+                </button>
+                {% endif %}
+                <!-- END watering button -->
+                <div class="mb-5"></div>
+                <h2 class='title is-4 mb-0'>表示優先度</h2>
+                <h3 class='sub-title mb-0'>※数値が高いほど上位に表示されます。(0~32767)</h3>
+                <p class='pb-5'>{{ plant_detail.priority }}</p>
+            </section>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
+<script>
+    //完了、未完了ボタンを押したときの動き
+    $(document).ready(function () {
+        $('.toggle-watering-complete').click(function () {
+            //1.plantID取得
+            var plantId = $(this).data('id');
+            //2,Ajax送信処理
+            $.ajax({
+                url: '/plant-management/watering-complete/' + plantId,
+                type: 'POST',
+                dataType: 'json',
+                //3.CSRF処理
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                    xhr.setRequestHeader('X-CSRFToken', $('input[name="csrfmiddlewaretoken"]').val());
+                },
+                //4.Ajax受信処理
+                success: function (data, textStatus, xhr) {
+                    var elem = $(`button[data-id=${plantId}]`);
+                    elem.replaceWith(
+                        `<button disabled class='button is-dark is-fullwidth is-rounded is-outlined'
+                        data-id=${plantId}>
+                        <span class='has-icon-left'>
+                            <span class='icon has-text-info'>
+                                <i class='fas fa-tint'></i>
+                            </span>
+                            ${data['watering-state']['message']}
+                        </span>
+                    </button>`
+                    );
+                },
+            });
+        });
+    });
+</script>
 {% endblock %}
