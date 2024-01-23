@@ -9,11 +9,11 @@ button {
 }
 
 /* リンク */
-a:visited{
+a:visited {
     color: #485FC7;
 }
 
-a:hover{
+a:hover {
     color: #ff78a0;
 }
 
@@ -131,6 +131,9 @@ plant detail
     height: 200px;
 }
 
+.detail-watering-button {
+    width: 171px !important;
+}
 
 /* ==========
 END plant detail

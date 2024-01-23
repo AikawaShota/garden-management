@@ -118,6 +118,10 @@ plant detail
   height: 200px;
 }
 
+.detail-watering-button {
+  width: 171px !important;
+}
+
 /* ==========
 END plant detail
 ========== *//*# sourceMappingURL=style.css.map */

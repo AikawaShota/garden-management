@@ -5,7 +5,7 @@
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 {% endblock %}
 
-{% block title %}{{ block.super }}植物詳細{% endblock %}
+{% block title %}{{ block.super }} - 植物詳細{% endblock %}
 
 {% block main %}
 <div class='hero is-fullheight-with-navbar'>
@@ -22,6 +22,9 @@
                 <p class='pb-5'>{{ plant_detail.description }}</p>
                 <h2 class='title is-4 mb-0'>関連URL</h2>
                 <!-- ForeignKeyを逆参照して関連するurlを取得。 -->
+                {% if plant_detail.relatedurl_set.all.0 is None %}
+                <p>関連URLは存在しません。</p>
+                {% endif %}
                 {% for url in plant_detail.relatedurl_set.all %}
                 <p><a href='{{ url.url }}' target='_blank'>{{ url.name }}</a> | {{ url.url }}</p>
                 {% endfor %}
@@ -33,7 +36,8 @@
                 <h2 class='title is-4 mb-1'>水やり</h2>
                 <!-- completed watering button -->
                 {% if watering_state.required is False %}
-                <button disabled class='button is-dark is-fullwidth is-rounded is-outlined' data-id='{{ plant_detail.plant_id }}'>
+                <button disabled class='button is-dark is-fullwidth is-rounded is-outlined detail-watering-button'
+                    data-id='{{ plant_detail.plant_id }}'>
                     <span class='has-icon-left'>
                         <span class='icon has-text-info'>
                             <i class='fas fa-tint'></i>
@@ -46,7 +50,8 @@
                 <!-- watering button -->
                 {% if watering_state.required %}
                 {% csrf_token %}
-                <button class='toggle-watering-complete button is-info is-fullwidth is-rounded is-outlined'
+                <button
+                    class='toggle-watering-complete button is-info is-fullwidth is-rounded is-outlined detail-watering-button'
                     data-id='{{ plant_detail.plant_id }}'>
                     <span class='has-icon-left'>
                         <span class='icon has-text-info'>
