@@ -2,6 +2,11 @@ from . import models
 from django.contrib import admin
 
 
+@admin.register(models.ImageCategory)
+class ImageCategoryAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(models.Image)
 class ImageAdmin(admin.ModelAdmin):
     pass

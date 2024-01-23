@@ -3,10 +3,28 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator
 
 
+class ImageCategory(models.Model):
+    image_category_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = 'ImageCategory'
+        verbose_name_plural = 'ImageCategories'
+
+    def __str__(self):
+        return self.name
+
+
 class Image(models.Model):
     image_id = models.AutoField(primary_key=True)
     alt = models.CharField(max_length=255)
     path = models.ImageField(upload_to='images/')
+    category = models.ForeignKey(
+        ImageCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
 
     class Meta:
         verbose_name = 'Image'
