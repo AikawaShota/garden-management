@@ -1,7 +1,6 @@
 from . import forms
 from django.urls import reverse_lazy
 from django.views import generic
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.contrib.auth import views as auth_views
 
