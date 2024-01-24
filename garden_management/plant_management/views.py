@@ -23,7 +23,7 @@ class PlantListView(LoginRequiredMixin, generic.ListView):
         # .order_by()：priorityの値で降順ソートした後、plant_idで昇順ソートする。
         queryset = self.model.objects \
             .select_related('image') \
-            .values('plant_id', 'name', 'description', 'image__path', 'image__alt', 'last_watering_date', 'watering_frequency') \
+            .values('plant_id', 'name', 'description', 'image__path', 'image__alt', 'last_watering_date', 'watering_frequency', 'priority') \
             .filter(user=self.request.user) \
             .order_by('-priority', 'plant_id')
         return queryset
@@ -105,6 +105,12 @@ class PlantEditView(mixins.PlantOwnerOnlyMixin, LoginRequiredMixin, generic.Upda
 class RelatedUrlAddView(mixins.RelatedPlantOwnerOnlyMixin, LoginRequiredMixin, generic.CreateView):
     form_class = forms.AddRelatedUrlForm
     template_name = 'plant_management/related_url_add.html'
+
+    def form_valid(self, form):
+        plant = models.Plant.objects.get(pk=self.kwargs.get('plant_id'))
+        form.instance.user = self.request.user
+        form.instance.plant = plant
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
