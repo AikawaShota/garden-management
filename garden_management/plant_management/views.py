@@ -74,10 +74,43 @@ class PlantDetailView(mixins.OwnerOnlyMixin, LoginRequiredMixin, generic.DetailV
 
 # 植物追加
 class PlantAddView(LoginRequiredMixin, generic.CreateView):
-    form_class = forms.PlantForm
+    form_class = forms.AddPlantForm
     template_name = 'plant_management/plant_add.html'
-    success_url = reverse_lazy('plant_management:list')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('plant_management:detail', kwargs={'pk': self.object.plant_id})
+
+
+# 植物編集
+class PlantEditView(mixins.PlantOwnerOnlyMixin, LoginRequiredMixin, generic.UpdateView):
+    model = models.Plant
+    form_class = forms.EditPlantForm
+    template_name = 'plant_management/plant_edit.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        plant = models.Plant.objects.get(pk=self.kwargs['pk'])
+        context['plant_name'] = plant.name
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('plant_management:detail', kwargs={'pk': self.object.plant_id})
+
+
+# 関連URL追加
+class RelatedUrlAddView(mixins.RelatedPlantOwnerOnlyMixin, LoginRequiredMixin, generic.CreateView):
+    form_class = forms.AddRelatedUrlForm
+    template_name = 'plant_management/related_url_add.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        plant = models.Plant.objects.get(pk=self.kwargs.get('plant_id'))
+        context['plant_name'] = plant.name
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('plant_management:detail', kwargs={'pk': self.object.plant_id})
