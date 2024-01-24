@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }}削除確認{% endblock %}
+
+{% block main %}
+<form method="post">
+    {% csrf_token %}
+    <p>植物「{{ object }}」を削除しようとしています。</p>
+    <p>削除した植物は元に戻すことはできません。</p>
+    <p>削除する場合は確定ボタンを押してください。</p>
+    <button class="btn" type="submit">確定</button>
+    <button type="button"><a class="btn" href="{% url 'plant_management:detail' pk=object.plant_id %}">キャンセル</a></button>
+</form>
+{% endblock %}
