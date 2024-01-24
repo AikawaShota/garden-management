@@ -101,6 +101,13 @@ class PlantEditView(mixins.PlantOwnerOnlyMixin, LoginRequiredMixin, generic.Upda
         return reverse_lazy('plant_management:detail', kwargs={'pk': self.object.plant_id})
 
 
+# 植物削除
+class PlantDeleteView(mixins.PlantOwnerOnlyMixin, LoginRequiredMixin, generic.DeleteView):
+    template_name = 'plant_management/plant_delete.html'
+    model = models.Plant
+    success_url = reverse_lazy('plant_management:list')
+
+
 # 関連URL追加
 class RelatedUrlAddView(mixins.RelatedPlantOwnerOnlyMixin, LoginRequiredMixin, generic.CreateView):
     form_class = forms.AddRelatedUrlForm

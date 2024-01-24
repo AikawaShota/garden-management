@@ -14,6 +14,8 @@ urlpatterns = [
     path('add', views.PlantAddView.as_view(), name='add'),
     # 植物編集
     path('edit/<int:pk>', views.PlantEditView.as_view(), name='edit'),
+    # 植物削除
+    path('delete/<int:pk>', views.PlantDeleteView.as_view(), name='delete'),
     # 関連url追加
-    path('add-url/<int:plant_id>', views.RelatedUrlAddView.as_view(), name='add-url')
+    path('add-url/<int:plant_id>', views.RelatedUrlAddView.as_view(), name='add-url'),
 ]
