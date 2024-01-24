@@ -26,7 +26,7 @@ class PlantForm(forms.ModelForm):
 
     image = forms.ModelChoiceField(
         queryset=models.Image.objects.order_by('pk'),
-        empty_label='デフォルト画像'
+        empty_label='選択してください。'
     )
 
     watering_frequency = forms.DurationField(
@@ -48,6 +48,8 @@ class PlantForm(forms.ModelForm):
     )
 
     description = forms.CharField(
+        required=False,
+        max_length=4095,
         widget=forms.Textarea(
             attrs={
                 'class': 'textarea',

@@ -1,14 +1,121 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ block.super }} - 植物追加{% endblock %}
+{% block title %}{{ block.super }}植物追加{% endblock %}
 
 {% block main %}
 <div class='hero is-fullheight-with-navbar'>
     <div class='container is-max-desktop'>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+        <section class='px-6 pt-6 pb-3'>
+            <h1 class='title is-3'>植物追加フォーム</h1>
+        </section>
+        <!-- form -->
+        <form method='POST'>
+            <div class='content px-6'>{% csrf_token %} {{ form.non_field_errors }}</div>
+            <section class='px-6 pb-6'>
+                <div class="field">
+                    <label class="label">植物名（必須）</label>
+                    <div class="control has-icons-left">
+                        {{ form.name }}
+                        <span class='icon is-small is-left'>
+                            <i class="fas fa-seedling"></i>
+                        </span>
+                    </div>
+                    <p class='help'>255文字以下。他の植物と同名でも登録可能です。</p>
+                    <ul>
+                        {% for error in form.name.errors %}
+                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="field">
+                    <label class="label">画像</label>
+                    <div class="control has-icons-left">
+                        <div class="select">
+                            {{ form.image }}
+                            <div class='icon is-small is-left'>
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        {% for error in form.image.errors %}
+                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="field">
+                    <label class="label">水やりの頻度（必須）</label>
+                    <div class="control has-icons-left">
+                        {{ form.watering_frequency }}
+                        <span class='icon is-small is-left'>
+                            <i class="fas fa-hourglass"></i>
+                        </span>
+                    </div>
+                    <p class='help'>"Day h:m:s"の形式で入力してください。</p>
+                    <p class='help'>例：1日と10時間毎に水やりをする場合。"1 10:00:00"</p>
+                    <ul>
+                        {% for error in form.watering_frequency.errors %}
+                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="field">
+                    <label class="label">最後に水やりをした日付（必須）</label>
+                    <div class="control">
+                        {{ form.last_watering_date }}
+                    </div>
+                    <p class='help'>カレンダーのアイコンをタップして頂くと、簡単に入力できます。</p>
+                    <ul>
+                        {% for error in form.last_watering_date.errors %}
+                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="field">
+                    <label class="label icon-text">
+                        <i class="fas fa-align-left"></i>
+                        説明
+                    </label>
+                    <div class="control">
+                        {{ form.description }}
+                    </div>
+                    <p class='help'>4095文字以下。自由にご入力ください。</p>
+                    <ul>
+                        {% for error in form.description.errors %}
+                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="field">
+                    <label class="label">表示優先度（必須）</label>
+                    <div class="control has-icons-left">
+                        {{ form.priority }}
+                        <span class='icon is-small is-left'>
+                            <i class="fas fa-sort-amount-down"></i>
+                        </span>
+                    </div>
+                    <p class='help'>数値が高いほど植物一覧で上位に表示されます。入力可能な範囲：0 ~ 32767。</p>
+                    <ul>
+                        {% for error in form.priority.errors %}
+                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+            <section class='px-6 pb-6'>
+                <div class='field is-grouped'>
+                    <div class='control'>
+                        <button type='submit' class='button is-info is-outlined'>
+                            追加
+                        </button>
+                    </div>
+                    <div class='control'>
+                        <button type='button' onclick='history.back()' class='button is-outlined'>戻る</button>
+                    </div>
+                </div>
+            </section>
         </form>
+        <!-- END form -->
     </div>
 </div>
 {% endblock %}

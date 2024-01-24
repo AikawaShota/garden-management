@@ -6,7 +6,7 @@ from .functions import get_watering_state
 from django.views import generic
 from django.http import JsonResponse
 from django.shortcuts import redirect
-from django.db import transaction
+from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -76,6 +76,7 @@ class PlantDetailView(mixins.OwnerOnlyMixin, LoginRequiredMixin, generic.DetailV
 class PlantAddView(LoginRequiredMixin, generic.CreateView):
     form_class = forms.PlantForm
     template_name = 'plant_management/plant_add.html'
+    success_url = reverse_lazy('plant_management:list')
 
     def form_valid(self, form):
         form.instance.user = self.request.user

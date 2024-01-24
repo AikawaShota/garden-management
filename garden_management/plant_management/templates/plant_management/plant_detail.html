@@ -19,7 +19,7 @@
             </section>
             <section>
                 <h2 class='title is-4 mb-0'>説明</h2>
-                <p class='pb-5'>{{ plant_detail.description }}</p>
+                <p class='pb-5'>{{ plant_detail.description|linebreaksbr }}</p>
                 <h2 class='title is-4 mb-0'>関連URL</h2>
                 <!-- ForeignKeyを逆参照して関連するurlを取得。 -->
                 {% if plant_detail.relatedurl_set.all.0 is None %}
@@ -67,6 +67,7 @@
                 <h3 class='sub-title mb-0'>※数値が高いほど上位に表示されます。(0~32767)</h3>
                 <p class='pb-5'>{{ plant_detail.priority }}</p>
             </section>
+            <button type='button' onclick='history.back()' class='button is-outlined'>戻る</button>
         </div>
     </div>
 </div>
