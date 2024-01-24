@@ -19,7 +19,7 @@ class ImageTagAdmin(admin.ModelAdmin):
 
 @admin.register(models.Plant)
 class PlantAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('plant_id', 'name')
 
 
 @admin.register(models.RelatedURL)

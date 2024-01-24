@@ -5,7 +5,7 @@
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 {% endblock %}
 
-{% block title %}{{ block.super }} - 植物詳細{% endblock %}
+{% block title %}{{ block.super }}植物詳細{% endblock %}
 
 {% block main %}
 <div class='hero is-fullheight-with-navbar'>
@@ -28,6 +28,8 @@
                 {% for url in plant_detail.relatedurl_set.all %}
                 <p><a href='{{ url.url }}' target='_blank'>{{ url.name }}</a> | {{ url.url }}</p>
                 {% endfor %}
+                <a href="{% url 'plant_management:add-url' plant_id=plant_detail.plant_id %}"><button type='button'
+                        class='button is-info is-outlined'>関連URLの追加</button></a>
                 <div class='mb-5'></div>
                 <h2 class='title is-4 mb-0'>水やり頻度</h2>
                 <p class='pb-5'>{{ plant_detail.watering_frequency }}</p>
@@ -67,7 +69,28 @@
                 <h3 class='sub-title mb-0'>※数値が高いほど上位に表示されます。(0~32767)</h3>
                 <p class='pb-5'>{{ plant_detail.priority }}</p>
             </section>
-            <button type='button' onclick='history.back()' class='button is-outlined'>戻る</button>
+            <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`"
+                class='button is-outlined'>
+                <span class='icon-text'>
+                    <span class='icon'>
+                        <i class="fas fa-link"></i>
+                    </span>
+                    <span>
+                        一覧
+                    </span>
+                </span>
+            </button>
+            <button type='button' onclick="location.href=`{% url 'plant_management:edit' pk=plant_detail.plant_id %}`"
+                class='button is-info is-outlined'>
+                <span class='icon-text'>
+                    <span class='icon'>
+                        <i class="fas fa-link"></i>
+                    </span>
+                    <span>
+                        編集
+                    </span>
+                </span>
+            </button>
         </div>
     </div>
 </div>

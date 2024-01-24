@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ block.super }}植物追加{% endblock %}
+{% block title %}{{ block.super }}植物編集{% endblock %}
 
 {% block main %}
 <div class='hero is-fullheight-with-navbar'>
     <div class='container is-max-desktop'>
         <section class='px-6 pt-6 pb-3'>
-            <h1 class='title is-3'>植物追加フォーム</h1>
+            <h1 class='title is-3'>{{ plant_name }}の編集フォーム</h1>
         </section>
         <!-- form -->
         <form method='POST'>
@@ -106,11 +106,11 @@
                 <div class='field is-grouped'>
                     <div class='control'>
                         <button type='submit' class='button is-info is-outlined'>
-                            追加
+                            保存
                         </button>
                     </div>
                     <div class='control'>
-                        <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`" class='button is-outlined'>キャンセル</button>
+                        <button type='button' onclick="history.back()" class='button is-outlined'>キャンセル</button>
                     </div>
                 </div>
             </section>
