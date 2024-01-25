@@ -127,3 +127,13 @@ class RelatedUrlAddView(mixins.RelatedPlantOwnerOnlyMixin, LoginRequiredMixin, g
 
     def get_success_url(self):
         return reverse_lazy('plant_management:detail', kwargs={'pk': self.object.plant_id})
+
+
+# 関連URL削除
+class RelatedUrlDeleteView(mixins.OwnerOnlyMixin, LoginRequiredMixin, generic.DeleteView):
+    template_name = 'plant_management/related_url_delete.html'
+    model = models.RelatedURL
+    context_object_name = 'url_info'
+
+    def get_success_url(self):
+        return reverse_lazy('plant_management:detail', kwargs={'pk': self.object.plant_id})

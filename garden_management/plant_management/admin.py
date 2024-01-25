@@ -24,7 +24,7 @@ class PlantAdmin(admin.ModelAdmin):
 
 @admin.register(models.RelatedURL)
 class RelatedURLAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('related_url_id', 'name', 'url')
 
 
 @admin.register(models.Color)
