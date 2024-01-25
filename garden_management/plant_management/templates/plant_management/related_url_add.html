@@ -10,7 +10,12 @@
         </section>
         <!-- form -->
         <form method='POST'>
-            <div class='content px-6'>{% csrf_token %} {{ form.non_field_errors }}</div>
+            {% csrf_token %}
+            <section class='px-6 pb-3'>
+                <p class="has-text-danger">
+                    {{ form.non_field_errors }}
+                </p>
+            </section>
             <section class='px-6 pb-6'>
                 <div class="field">
                     <label class="label">名前（サイト名など）</label>
