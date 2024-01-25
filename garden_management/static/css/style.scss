@@ -5,7 +5,7 @@ Bulma
 
 // primaryカラーの変更
 $primary: #0c401c;
-$footer-background-color: darken($primary, 5%)!important;
+$footer-background-color: darken($primary, 2.5%) !important;
 
 // Import only what you need from Bulma
 @import "../bulma/sass/utilities/_all.sass";

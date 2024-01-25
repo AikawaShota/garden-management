@@ -10,7 +10,12 @@
         </section>
         <!-- form -->
         <form method='POST'>
-            <div class='content px-6'>{% csrf_token %} {{ form.non_field_errors }}</div>
+            {% csrf_token %}
+            <section class='px-6 pb-3'>
+                <p class="has-text-danger">
+                    {{ form.non_field_errors }}
+                </p>
+            </section>
             <section class='px-6 pb-6'>
                 <div class="field">
                     <label class="label">植物名（必須）</label>
@@ -110,7 +115,8 @@
                         </button>
                     </div>
                     <div class='control'>
-                        <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`" class='button is-outlined'>キャンセル</button>
+                        <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`"
+                            class='button is-outlined'>キャンセル</button>
                     </div>
                 </div>
             </section>

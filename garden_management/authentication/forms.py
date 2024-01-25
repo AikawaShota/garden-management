@@ -1,4 +1,11 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm,
+    UsernameField,
+    PasswordChangeForm,
+)
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import password_validation
 from . import models
 from django import forms
 
@@ -74,4 +81,42 @@ class LoginForm(AuthenticationForm):
                 'class': 'input',
             }
         )
+    )
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    # 継承元のPasswordChangeFormのfieldをオーバーライド。
+    old_password = forms.CharField(
+        label=_("Old password"),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "current-password",
+                "autofocus": True,
+                "class": "input",
+            }
+        ),
+    )
+
+    # 継承元のPasswordChangeFormが継承しているSetPasswordFormのfiledをオーバーライド。
+    new_password1 = forms.CharField(
+        label=_("New password"),
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                "class": "input",
+            }
+        ),
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    new_password2 = forms.CharField(
+        label=_("New password confirmation"),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                "class": "input",
+            }
+        ),
     )

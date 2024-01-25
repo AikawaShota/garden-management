@@ -9,10 +9,12 @@
 {% block main %}
 <div class='hero is-fullheight-with-navbar'>
     <div class='hero-body'>
-        <h1 class='title'>正常にログアウトされました。</h1>
-        <p class='subtitle'>
-            5秒後に自動的に<a class='has-text-link' href="{% url 'authentication:login' %}">ログインページ</a>へリダイレクトされます。
-        </p>
+        <div class="container">
+            <h1 class='title'>正常にログアウトされました。</h1>
+            <p class='subtitle'>
+                5秒後に自動的に<a class='has-text-link' href="{% url 'authentication:login' %}">ログインページ</a>へリダイレクトされます。
+            </p>
+        </div>
     </div>
 </div>
 {% endblock %}
