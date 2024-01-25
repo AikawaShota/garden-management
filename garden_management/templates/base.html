@@ -50,12 +50,15 @@
     <header>
         <nav class='navbar is-primary is-fixed-top'>
             <div class='navbar-brand'>
+                {% if user.is_authenticated %}
                 <div class='navbar-burger' data-target='navbarExampleTransparentExample'>
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
+                {% endif %}
             </div>
+            {% if user.is_authenticated %}
             <!-- navigation menu -->
             <div id="navbarExampleTransparentExample" class="navbar-menu">
                 <div class="navbar-start">
@@ -100,7 +103,9 @@
                                     このアプリについて(未)
                                 </span>
                             </a>
-                            <a class="navbar-item icon-text pr-0" href="https://github.com/AikawaShota/garden-management" target="_blank" rel="noopener noreferrer">
+                            <a class="navbar-item icon-text pr-0"
+                                href="https://github.com/AikawaShota/garden-management" target="_blank"
+                                rel="noopener noreferrer">
                                 <span class="icon">
                                     <i class="fab fa-github"></i>
                                 </span>
@@ -144,6 +149,7 @@
                 </div>
             </div>
             <!-- END navigation menu -->
+            {% endif %}
         </nav>
     </header>
     <!-- END header-->
