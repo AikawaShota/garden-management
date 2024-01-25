@@ -122,6 +122,20 @@ plant detail
   width: 171px !important;
 }
 
+/* related-url */
+.related-url-container {
+  margin: 10px 0;
+}
+
+.related-url {
+  display: inline-block;
+  width: 65vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 6px;
+}
+
 /* ==========
 END plant detail
 ========== *//*# sourceMappingURL=style.css.map */

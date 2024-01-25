@@ -18,4 +18,6 @@ urlpatterns = [
     path('delete/<int:pk>', views.PlantDeleteView.as_view(), name='delete'),
     # 関連url追加
     path('add-url/<int:plant_id>', views.RelatedUrlAddView.as_view(), name='add-url'),
+    # 関連url削除
+    path('delete-url/<int:pk>', views.RelatedUrlDeleteView.as_view(), name='delete-url'),
 ]
