@@ -48,7 +48,7 @@
 <body class='has-navbar-fixed-top'>
     <!-- header -->
     <header>
-        <nav class='navbar is-transparent is-primary is-fixed-top'>
+        <nav class='navbar is-primary is-fixed-top'>
             <div class='navbar-brand'>
                 <div class='navbar-burger' data-target='navbarExampleTransparentExample'>
                     <span></span>
@@ -56,6 +56,94 @@
                     <span></span>
                 </div>
             </div>
+            <!-- navigation menu -->
+            <div id="navbarExampleTransparentExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="{% url 'plant_management:list' %}" class="navbar-item icon-text">
+                        <span class="icon">
+                            <i class="far fa-list-alt"></i>
+                        </span>
+                        <span>
+                            一覧
+                        </span>
+                    </a>
+                    <a href="{% url 'plant_management:add' %}" class="navbar-item icon-text">
+                        <span class="icon">
+                            <i class="far fa-plus-square"></i>
+                        </span>
+                        <span>
+                            追加
+                        </span>
+                    </a>
+                    <!-- other dropdown -->
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <p class="navbar-link">
+                            <span>その他</span>
+                        </p>
+                        <div class="navbar-dropdown is-boxed">
+                            <!-- FAのアイコンのところで改行されないように、15文字(15em)文のwidthを持つ要素を挿入。 -->
+                            <span class="navbar-item p-0" style="width:15em;"></span>
+                            <a class="navbar-item icon-text pr-0" href="#">
+                                <span class="icon">
+                                    <i class="fas fa-comments"></i>
+                                </span>
+                                <span>
+                                    問い合わせ(未)
+                                </span>
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item icon-text pr-0" href="#">
+                                <span class="icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </span>
+                                <span>
+                                    このアプリについて(未)
+                                </span>
+                            </a>
+                            <a class="navbar-item icon-text pr-0" href="https://github.com/AikawaShota/garden-management" target="_blank" rel="noopener noreferrer">
+                                <span class="icon">
+                                    <i class="fab fa-github"></i>
+                                </span>
+                                <span>
+                                    ソースコード
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END other dropdown -->
+                </div>
+                <div class="navbar-end">
+                    <!-- user dropdown -->
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <p class="navbar-link icon-text">
+                            <span class="icon mt-1 mr-0">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <span>ユーザー</span>
+                        </p>
+                        <div class="navbar-dropdown is-boxed">
+                            <a class="navbar-item icon-text pr-0" href="#">
+                                <span class="icon">
+                                    <i class="fas fa-user-edit"></i>
+                                </span>
+                                <span>
+                                    ユーザ情報(末)
+                                </span>
+                            </a>
+                            <a class="navbar-item icon-text pr-0" href="{% url 'authentication:logout' %}">
+                                <span class="icon">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <span>
+                                    ログアウト
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END user dropdown -->
+                </div>
+            </div>
+            <!-- END navigation menu -->
         </nav>
     </header>
     <!-- END header-->

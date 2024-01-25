@@ -34,7 +34,7 @@ button {
 }
 
 /* リンク */
-a:visited {
+a:visited and :not(a.navbar-item) {
     color: #485FC7;
 }
 
