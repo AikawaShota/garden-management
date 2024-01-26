@@ -33,7 +33,7 @@
                     </ul>
                 </div>
                 <div class="field">
-                    <label class="label">画像</label>
+                    <label class="label">画像（必須）</label>
                     <div class="control has-icons-left">
                         <div class="select">
                             {{ form.image }}
@@ -115,8 +115,7 @@
                         </button>
                     </div>
                     <div class='control'>
-                        <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`"
-                            class='button is-outlined'>キャンセル</button>
+                        <button type='button' onclick="history.back()" class='button is-outlined'>キャンセル</button>
                     </div>
                 </div>
             </section>

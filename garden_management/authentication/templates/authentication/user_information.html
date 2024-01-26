@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }}ユーザ情報{% endblock %}
+
+{% block main %}
+<div class='hero is-fullheight-with-navbar'>
+    <div class='hero-body'>
+        <div class='container is-max-desktop'>
+            <section class="pb-5">
+                <h1 class="title">ユーザー情報</h1>
+            </section>
+            <section class="pb-6">
+                <table class="table is-striped">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>ユーザー名</th>
+                            <td>{{ request.user.user_name }}</td>
+                            <td>
+                                <button class="button is-info is-outlined" onclick="location.href=`#`">変更（未）</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ request.user.email }}</td>
+                            <td>
+                                <button class="button is-info is-outlined" onclick="location.href=`#`">変更（未）</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>パスワード</th>
+                            <td>暗号化しているため、表示できません。</td>
+                            <td>
+                                <button class="button is-info is-outlined"
+                                    onclick="location.href=`{% url 'authentication:password-change' %}`">変更（未）</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>登録日</th>
+                            <td>{{ request.user.date_joined }}</td>
+                            <td></td>
+                        </tr>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class=''>
+                <div class='field is-grouped'>
+                    <div class='control'>
+                        <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`"
+                            class='button is-outlined'>植物一覧</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

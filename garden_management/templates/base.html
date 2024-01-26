@@ -70,7 +70,7 @@
                             <i class="far fa-list-alt"></i>
                         </span>
                         <span>
-                            一覧
+                            植物一覧
                         </span>
                     </a>
                     <a href="{% url 'plant_management:add' %}" class="navbar-item icon-text">
@@ -78,7 +78,7 @@
                             <i class="far fa-plus-square"></i>
                         </span>
                         <span>
-                            追加
+                            植物追加
                         </span>
                     </a>
                     <!-- other dropdown -->
@@ -130,12 +130,12 @@
                             <span>ユーザー</span>
                         </p>
                         <div class="navbar-dropdown is-boxed">
-                            <a class="navbar-item icon-text pr-0" href="#">
+                            <a class="navbar-item icon-text pr-0" href="{% url 'authentication:user-information' %}">
                                 <span class="icon">
                                     <i class="fas fa-user-edit"></i>
                                 </span>
                                 <span>
-                                    ユーザ情報(末)
+                                    ユーザ情報
                                 </span>
                             </a>
                             <a class="navbar-item icon-text pr-0" href="{% url 'authentication:logout' %}">

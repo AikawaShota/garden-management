@@ -1,11 +1,12 @@
 from . import forms
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+# ユーザ登録
 class SignUpView(CreateView):
     form_class = forms.SignUpForm
     template_name = 'authentication/signup.html'
@@ -17,14 +18,21 @@ class SignUpView(CreateView):
         return redirect(self.get_success_url())
 
 
+# ログイン
 class LoginView(LoginView):
     template_name = 'authentication/login.html'
     authentication_form = forms.LoginForm
 
 
+# ログアウト
 class LogoutView(LogoutView):
     template_name = 'authentication/logout.html'
     next_page = 'authentication:logout'
+
+
+# ユーザ情報表示
+class UserInformationView(LoginRequiredMixin, TemplateView):
+    template_name = 'authentication/user_information.html'
 
 
 # パスワード変更画面
