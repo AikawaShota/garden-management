@@ -50,6 +50,9 @@
     <header>
         <nav class='navbar is-primary is-fixed-top'>
             <div class='navbar-brand'>
+                <a href="{% url 'plant_management:list' %}" class="navbar-item px-2 py-0">
+                    <img src="{% static 'img/logotype-transparent.png' %}" alt="にわかんのロゴタイプ。" class="logo-type">
+                </a>
                 {% if user.is_authenticated %}
                 <div class='navbar-burger' data-target='navbarExampleTransparentExample'>
                     <span></span>
