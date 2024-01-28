@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }}500{% endblock %}
+
+{% block main %}
+<div class='hero is-fullheight-with-navbar'>
+    <div class='hero-body'>
+        <div class="container">
+            <h1 class='title'>500 サーバーで処理中にエラーが発生しました。</h1>
+            <p class='sub-title'>サーバーで処理中に何らかのエラーが発生しました。お手数をおかけいたしますが、もう一度やり直してください。</p>
+            <p class='sub-title pb-3'>
+                それでもエラーが発生した場合は、<a href="{% url 'help:inquiry' %}">こちらのフォーム</a>から不具合をご報告していただければ幸いです。
+            </p>
+            <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`"
+                class='button is-outlined'>
+                <span class='icon-text'>
+                    <span class='icon'>
+                        <i class="far fa-list-alt"></i>
+                    </span>
+                    <span>
+                        一覧
+                    </span>
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
