@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
-from django.core.mail import send_mail
+from django.http import HttpResponse
+from django.core.mail import send_mail, BadHeaderError
 
 
 # username認証をemail認証に変更するため、UserManagerをオーバーライドする。
@@ -63,4 +64,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.email = self.__class__.objects.normalize_email(self.email)
 
     def email_user(self, subject, message, from_email=None, **kwargs):
-        send_mail(subject, message, from_email, [self.email], **kwargs)
+        try:
+            send_mail(
+                subject,
+                message,
+                from_email,
+                [self.email],
+                **kwargs
+            )
+        except BadHeaderError:
+            return HttpResponse("無効なヘッダが検出されました。")
