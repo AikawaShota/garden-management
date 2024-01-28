@@ -14,6 +14,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/authentication/login')),
     path('authentication/', include('authentication.urls')),
     path('plant-management/', include('plant_management.urls')),
+    path('help/', include('help.urls')),
 ]
 
 # MEDIA（画像配信）の設定

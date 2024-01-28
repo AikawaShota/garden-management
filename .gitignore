@@ -7,7 +7,7 @@ venv/
 __pycache__/
 db-volumes/
 db.sqlite3
-# local_settings.py
+local_settings.py
 
 # Mac
 .DS_Store
