@@ -17,3 +17,10 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# email settings
+EMAIL_HOST = 'example.com'
+EMAIL_HOST_USER = 'sample@example.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
