@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'plant_management',
+    'help',
 ]
 
 MIDDLEWARE = [

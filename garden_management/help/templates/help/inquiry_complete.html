@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }}送信完了{% endblock %}
+
+{% block main %}
+<div class='hero is-fullheight-with-navbar'>
+    <div class='hero-body'>
+        <div class="container">
+            <h1 class='title'>お問い合わせが正常に送信されました。</h1>
+            <p class='sub-title'>1週間以内を目処に返信いたします。</p>
+            <p class="sub-title pb-3">返信が届かない場合は、<a
+                    href="mailto:inquiry@niwakan.mesekit.com">inquiry@niwakan.mesekit.com</a>が除外設定に入っていないかご確認ください。</p>
+            <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`"
+                class='button is-outlined'>
+                <span class='icon-text'>
+                    <span class='icon'>
+                        <i class="far fa-list-alt"></i>
+                    </span>
+                    <span>
+                        一覧
+                    </span>
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
