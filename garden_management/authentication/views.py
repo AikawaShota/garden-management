@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class SignUpView(CreateView):
     form_class = forms.SignUpForm
     template_name = 'authentication/signup.html'
-    success_url = reverse_lazy('lend:equipment-list')
+    success_url = reverse_lazy('authentication:login')
 
     def form_valid(self, form):
         user = form.save()
