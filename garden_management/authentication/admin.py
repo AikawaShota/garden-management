@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
                 "fields": (
                     "email",
                     "password",
-                    "user_name",
+                    "nickname",
                     "is_active",
                     "date_joined"
                 )
@@ -28,12 +28,12 @@ class CustomUserAdmin(UserAdmin):
         (
             None, {
                 "classes": ("wide",),
-                "fields": ("email", "password1", "password2", "user_name",)
+                "fields": ("email", "password1", "password2", "nickname",)
             }
         ),
     )
 
-    list_display = ("user_id", "user_name", "email")
+    list_display = ("user_id", "nickname", "email")
     list_filter = ("is_staff", "is_active")
     ordering = ("user_id",)
 

@@ -36,7 +36,7 @@
             {% endif %}
             {% endif %}
         </section>
-        <form method="post" action="{% url "authentication:login" %}">
+        <form method="post" action="{% url 'authentication:login' %}">
             {% csrf_token %}
             <section class="px-6 pb-6">
                 <div class="field mb-5">

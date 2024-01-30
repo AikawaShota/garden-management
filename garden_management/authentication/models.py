@@ -44,7 +44,7 @@ class CustomUserManager(UserManager):
 # カスタムユーザモデル
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True, editable=False)
-    user_name = models.CharField(max_length=127, verbose_name="ユーザー名")
+    nickname = models.CharField(max_length=127, verbose_name="ニックネーム")
     email = models.EmailField(unique=True, verbose_name="メールアドレス")
 
     # ユーザの利用可否（ログイン可否）を保存するfield。
@@ -60,7 +60,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ("user_name",)
+    REQUIRED_FIELDS = ("nickname",)
 
     class Meta:
         verbose_name = "ユーザー"
