@@ -10,8 +10,8 @@ class ImageCategory(models.Model):
     name = models.CharField(max_length=255)
 
     class Meta:
-        verbose_name = 'ImageCategory'
-        verbose_name_plural = 'ImageCategories'
+        verbose_name = "ImageCategory"
+        verbose_name_plural = "ImageCategories"
 
     def __str__(self):
         return self.name
@@ -20,7 +20,7 @@ class ImageCategory(models.Model):
 class Image(models.Model):
     image_id = models.AutoField(primary_key=True)
     alt = models.CharField(max_length=255)
-    path = models.ImageField(upload_to='images/')
+    path = models.ImageField(upload_to="images/")
     category = models.ForeignKey(
         ImageCategory,
         on_delete=models.SET_NULL,
@@ -29,8 +29,8 @@ class Image(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Image'
-        verbose_name_plural = 'Images'
+        verbose_name = "Image"
+        verbose_name_plural = "Images"
 
     def __str__(self):
         return self.alt
@@ -45,8 +45,8 @@ class ImageTag(models.Model):
     name = models.CharField(max_length=255)
 
     class Meta:
-        verbose_name = 'ImageTag'
-        verbose_name_plural = 'ImageTags'
+        verbose_name = "ImageTag"
+        verbose_name_plural = "ImageTags"
 
     def __str__(self):
         return self.name
@@ -73,8 +73,8 @@ class Plant(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Plant'
-        verbose_name_plural = 'Plants'
+        verbose_name = "Plant"
+        verbose_name_plural = "Plants"
 
     def __str__(self):
         return self.name
@@ -94,8 +94,8 @@ class RelatedURL(models.Model):
     )
 
     class Meta:
-        verbose_name = 'RelatedURL'
-        verbose_name_plural = 'RelatedURLs'
+        verbose_name = "RelatedURL"
+        verbose_name_plural = "RelatedURLs"
 
     def __str__(self):
         return self.url
@@ -109,8 +109,8 @@ class Color(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Color'
-        verbose_name_plural = 'Colors'
+        verbose_name = "Color"
+        verbose_name_plural = "Colors"
 
     def __str__(self):
         return self.name
@@ -142,8 +142,8 @@ class CultivationCalendar(models.Model):
     )
 
     class Meta:
-        verbose_name = 'CultivationCalendar'
-        verbose_name_plural = 'CultibationCalendars'
+        verbose_name = "CultivationCalendar"
+        verbose_name_plural = "CultibationCalendars"
 
     def __str__(self):
         return self.title

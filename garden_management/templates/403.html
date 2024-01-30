@@ -1,19 +1,19 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block title %}{{ block.super }}閲覧禁止{% endblock %}
 
 {% block head %}
-<meta http-equiv='refresh' content=" 5; url={% url 'plant_management:list' %}" />
+<meta http-equiv="refresh" content=" 5; url={% url 'plant_management:list' %}" />
 {% endblock %}
 
 {% block main %}
-<div class='hero is-fullheight-with-navbar'>
-    <div class='hero-body'>
+<div class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
         <div class="container">
-            <h1 class='title'>閲覧禁止</h1>
-            <p class='sub-title'>あなたの権限では閲覧できないページにアクセスしたため、リダイレクトされました。</p>
-            <p class='sub-title'>
-                5秒後に自動的に<a class='has-text-link' href="{% url 'plant_management:list' %}">一覧ページ</a>へリダイレクトされます。
+            <h1 class="title">閲覧禁止</h1>
+            <p class="sub-title">あなたの権限では閲覧できないページにアクセスしたため、リダイレクトされました。</p>
+            <p class="sub-title">
+                5秒後に自動的に<a class="has-text-link" href="{% url 'plant_management:list' %}">一覧ページ</a>へリダイレクトされます。
             </p>
         </div>
     </div>

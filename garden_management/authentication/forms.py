@@ -5,19 +5,23 @@ from django.contrib.auth.forms import (
     PasswordChangeForm,
 )
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import password_validation
-from . import models
+from django.contrib.auth import password_validation, get_user_model
 from django import forms
 
 
+# ユーザ登録フォーム
 class SignUpForm(UserCreationForm):
+    class Meta:
+        model = get_user_model()
+        fields = ("email", "password1", "password2", "user_name")
+
     email = forms.EmailField(
         required=True,
         max_length=255,
         widget=forms.EmailInput(
             attrs={
-                'placeholder': 'sample@example.com',
-                'class': 'input'
+                "placeholder": "sample@example.com",
+                "class": "input"
             }
         )
     )
@@ -27,7 +31,7 @@ class SignUpForm(UserCreationForm):
         max_length=255,
         widget=forms.PasswordInput(
             attrs={
-                'class': 'input'
+                "class": "input"
             }
         )
     )
@@ -37,7 +41,7 @@ class SignUpForm(UserCreationForm):
         max_length=255,
         widget=forms.PasswordInput(
             attrs={
-                'class': 'input'
+                "class": "input"
             }
         )
     )
@@ -47,17 +51,14 @@ class SignUpForm(UserCreationForm):
         max_length=127,
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'username',
-                'class': 'input'
+                "placeholder": "username",
+                "class": "input"
             }
         )
     )
 
-    class Meta:
-        model = models.User
-        fields = ('email', 'password1', 'password2', 'user_name')
 
-
+# ログインフォーム
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
@@ -67,8 +68,8 @@ class LoginForm(AuthenticationForm):
         max_length=255,
         widget=forms.EmailInput(
             attrs={
-                'placeholder': 'sample@example.com',
-                'class': 'input'
+                "placeholder": "sample@example.com",
+                "class": "input"
             }
         )
     )
@@ -78,12 +79,13 @@ class LoginForm(AuthenticationForm):
         max_length=255,
         widget=forms.PasswordInput(
             attrs={
-                'class': 'input',
+                "class": "input",
             }
         )
     )
 
 
+# パスワード変更フォーム
 class CustomPasswordChangeForm(PasswordChangeForm):
     # 継承元のPasswordChangeFormのfieldをオーバーライド。
     old_password = forms.CharField(
@@ -110,6 +112,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         strip=False,
         help_text=password_validation.password_validators_help_text_html(),
     )
+
     new_password2 = forms.CharField(
         label=_("New password confirmation"),
         strip=False,

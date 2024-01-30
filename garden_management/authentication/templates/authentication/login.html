@@ -1,91 +1,92 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
+{% block title %}{{ block.super }}ログイン{% endblock %}
+
 {% block head %}
-<link rel='stylesheet' href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 
 {% block main %}
-<div class='columns m-0'>
-    <div class='login-image column'>
-        <div class='login-image-text'>
-            <h1 class='title has-text-light has-text-centered is-3'>庭の管理を簡単に。</h1>
-            <p class='sub-title has-text-centered has-text-light is-size-6'>
-                "にわかん"は、忘れがちな水やりなどの植物の世話を<br class='br-pc'>
+<div class="columns m-0">
+    <div class="login-image column">
+        <div class="login-image-text">
+            <h1 class="title has-text-light has-text-centered is-3">庭の管理を簡単に。</h1>
+            <p class="sub-title has-text-centered has-text-light is-size-6">
+                "にわかん"は、忘れがちな水やりなどの植物の世話を<br class="br-pc">
                 サポートするWEBアプリケーションです。
             </p>
         </div>
     </div>
-    <div class='login-form column'>
-        <section class='px-6 pt-6 pb-6'>
-            <h1 class='title is-3'>にわかん</h1>
+    <div class="login-form column">
+        <section class="px-6 pt-6 pb-6">
+            <h1 class="title is-3">にわかん</h1>
             <h2 class="subtitle">家庭菜園支援アプリ</h2>
         </section>
-        <section class='px-6 pt-6 pb-3'>
-            <h1 class='title is-4'>ログイン</h1>
+        <section class="px-6 pt-6 pb-3">
+            <h1 class="title is-4">ログイン</h1>
             {% if form.errors %}
-            <p class='has-text-danger is-size-6'>登録されているメールアドレスとパスワードが一致しませんでした。再度ご入力お願いいたします。</p>
+            <p class="has-text-danger is-size-6">登録されているメールアドレスとパスワードが一致しませんでした。再度ご入力お願いいたします。</p>
             {% endif %}
             {% if next %}
             {% if user.is_authenticated %}
-            <p class='has-text-danger is-size-6'>このアカウントの持つ権限ではこのページにアクセスできません。</p>
+            <p class="has-text-danger is-size-6">このアカウントの持つ権限ではこのページにアクセスできません。</p>
             {% else %}
-            <p class='has-text-danger is-size-6'>このページにアクセスするにはログインが必要です。</p>
+            <p class="has-text-danger is-size-6">このページにアクセスするにはログインが必要です。</p>
             {% endif %}
             {% endif %}
         </section>
-        <form method='post' action="{% url 'authentication:login' %}">
+        <form method="post" action="{% url "authentication:login" %}">
             {% csrf_token %}
-            <section class='px-6 pb-6'>
-                <div class='field mb-5'>
-                    <label for='' class='label'>メールアドレス</label>
-                    <div class='control has-icons-left'>
+            <section class="px-6 pb-6">
+                <div class="field mb-5">
+                    <label for="" class="label">メールアドレス</label>
+                    <div class="control has-icons-left">
                         {{ form.username }}
-                        <span class='icon is-small is-left'>
-                            <i class='fas fa-envelope'></i>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
                         </span>
                     </div>
                 </div>
-                <div class='field'>
-                    <label for='' class='label'>パスワード</label>
-                    <div class='control has-icons-left has-icons-right'>
+                <div class="field">
+                    <label for="" class="label">パスワード</label>
+                    <div class="control has-icons-left has-icons-right">
                         {{ form.password }}
-                        <span class='icon is-small is-left'>
-                            <i class='fas fa-lock'></i>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
                         </span>
-                        <span class='icon is-small is-right'>
-                            <i class='fas fa-eye-slash' id='buttonEye' onclick='pushShowButton()'></i>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-eye-slash" id="buttonEye" onclick="pushShowButton()"></i>
                         </span>
                     </div>
                 </div>
-                <section class='pt-4'>
-                    <div class='field'>
-                        <div class='control'>
-                            <button type='submit' class='button is-info is-outlined is-fullwidth'>ログイン</button>
+                <section class="pt-4">
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-info is-outlined is-fullwidth">ログイン</button>
                         </div>
                     </div>
-                    <input type='hidden' name='next' value='{{ next }}'>
+                    <input type="hidden" name="next" value="{{ next }}">
                 </section>
         </form>
-        <a id='signup-link' href="{% url 'authentication:signup' %}">新規登録はこちら</a>
+        <a id="signup-link" href="{% url 'authentication:signup' %}">新規登録はこちら</a>
         <!-- パスワードリセット機能を実装した際にhtmlのコメントとpythonのコメント（#）を外す。 -->
-        <!-- <p><a href="{# % url 'password_reset' %}">Lost password?</a></p> -->
+        <!-- <p><a href="{# % url "password_reset" %}">Lost password?</a></p> -->
     </div>
 </div>
-
 {% endblock %}
 
 {% block scripts %}
 <script>
     function pushShowButton() {
-        var txtPass = document.getElementById('id_password');
-        var btnEye = document.getElementById('buttonEye');
-        if (txtPass.type === 'text') {
-            txtPass.type = 'password';
-            btnEye.className = 'fas fa-eye-slash';
+        var txtPass = document.getElementById("id_password");
+        var btnEye = document.getElementById("buttonEye");
+        if (txtPass.type === "text") {
+            txtPass.type = "password";
+            btnEye.className = "fas fa-eye-slash";
         } else {
-            txtPass.type = 'text';
-            btnEye.className = 'fas fa-eye';
+            txtPass.type = "text";
+            btnEye.className = "fas fa-eye";
         }
     }
 </script>

@@ -12,9 +12,9 @@ class InquiryFormView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy("help:inquiry-complete")
 
     def form_valid(self, form):
-        category = form.cleaned_data['category']
-        subject = form.cleaned_data['subject']
-        message = form.cleaned_data['message']
+        category = form.cleaned_data["category"]
+        subject = form.cleaned_data["subject"]
+        message = form.cleaned_data["message"]
         user = self.request.user
         user_name = user.user_name
         user_email = user.email

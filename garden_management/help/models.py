@@ -11,8 +11,8 @@ class InquiryCategory(models.Model):
     priority = models.PositiveSmallIntegerField()
 
     class Meta:
-        verbose_name = 'InquiryCategory'
-        verbose_name_plural = 'InquiryCategories'
+        verbose_name = "InquiryCategory"
+        verbose_name_plural = "InquiryCategories"
 
     def __str__(self):
         return self.name

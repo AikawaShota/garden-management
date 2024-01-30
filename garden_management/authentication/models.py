@@ -1,5 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    PermissionsMixin,
+    UserManager
+)
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
 from django.http import HttpResponse
@@ -16,18 +20,18 @@ class CustomUserManager(UserManager):
         return user
 
     def create_user(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', False)
-        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault("is_staff", False)
+        extra_fields.setdefault("is_superuser", False)
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
 
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
@@ -38,26 +42,29 @@ class CustomUserManager(UserManager):
 
 
 # カスタムユーザモデル
-class User(AbstractBaseUser, PermissionsMixin):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True, editable=False)
-    username_validator = UnicodeUsernameValidator()
-    user_name = models.CharField(max_length=127, verbose_name='ユーザー名')
-    email = models.EmailField(unique=True, verbose_name='メールアドレス')
+    user_name = models.CharField(max_length=127, verbose_name="ユーザー名")
+    email = models.EmailField(unique=True, verbose_name="メールアドレス")
 
+    # ユーザの利用可否（ログイン可否）を保存するfield。
     is_active = models.BooleanField(default=True)
+
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+
     date_joined = models.DateTimeField(default=timezone.now)
 
+    username_validator = UnicodeUsernameValidator()
     objects = CustomUserManager()
 
-    EMAIL_FIELD = 'email'
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ('user_name',)
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ("user_name",)
 
     class Meta:
-        verbose_name = 'ユーザー'
-        verbose_name_plural = 'ユーザー'
+        verbose_name = "ユーザー"
+        verbose_name_plural = "ユーザー"
 
     def clean(self):
         super().clean()

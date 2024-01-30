@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block title %}{{ block.super }}お問い合わせ{% endblock %}
 
 {% block main %}
-<div class='hero is-fullheight-with-navbar'>
-    <div class='container is-max-desktop'>
-        <section class='px-6 pt-6 pb-3'>
-            <h1 class='title is-3'>お問い合わせフォーム</h1>
+<div class="hero is-fullheight-with-navbar">
+    <div class="container is-max-desktop">
+        <section class="px-6 pt-6 pb-3">
+            <h1 class="title is-3">お問い合わせフォーム</h1>
             <ul>
                 <li>こちらのフォームからサイト運営者に問い合わせを行うことができます。</li>
                 <li><a href="mailto:inquiry@niwakan.mesekit.com">inquiry@niwakan.mesekit.com</a>から<a
@@ -15,27 +15,27 @@
             </ul>
         </section>
         <!-- form -->
-        <form method='POST'>
+        <form method="POST">
             {% csrf_token %}
-            <section class='px-6 pb-3'>
+            <section class="px-6 pb-3">
                 <p class="has-text-danger">
                     {{ form.non_field_errors }}
                 </p>
             </section>
-            <section class='px-6 pb-6'>
+            <section class="px-6 pb-6">
                 <div class="field pb-3">
                     <label class="label">お問い合わせカテゴリ（必須）</label>
                     <div class="control has-icons-left">
                         <div class="select">
                             {{ form.category }}
-                            <div class='icon is-small is-left'>
+                            <div class="icon is-small is-left">
                                 <i class="fas fa-th-large"></i>
                             </div>
                         </div>
                     </div>
                     <ul>
                         {% for error in form.category.errors %}
-                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        <li class="has-text-danger is-size-7">・{{ error }}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -43,14 +43,14 @@
                     <label class="label">件名（必須）</label>
                     <div class="control has-icons-left">
                         {{ form.subject }}
-                        <span class='icon is-small is-left'>
+                        <span class="icon is-small is-left">
                             <i class="fas fa-heading"></i>
                         </span>
                     </div>
-                    <p class='help'>255文字以下。</p>
+                    <p class="help">255文字以下。</p>
                     <ul>
                         {% for error in form.subject.errors %}
-                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        <li class="has-text-danger is-size-7">・{{ error }}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -62,10 +62,10 @@
                     <div class="control">
                         {{ form.message }}
                     </div>
-                    <p class='help'>8192文字以下。出来るだけ具体的にご入力ください。</p>
+                    <p class="help">8192文字以下。出来るだけ具体的にご入力ください。</p>
                     <ul>
                         {% for error in form.message.errors %}
-                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        <li class="has-text-danger is-size-7">・{{ error }}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -77,23 +77,23 @@
                             <i class="fas fa-paper-plane"></i>
                         </label>
                     </div>
-                    <p class='help'>ここにチェックして頂くと、お問い合わせ内容のコピーをご登録のメールアドレスに対して送信します。（未実装）</p>
+                    <p class="help">ここにチェックして頂くと、お問い合わせ内容のコピーをご登録のメールアドレスに対して送信します。（未実装）</p>
                     <ul>
                         {% for error in form.is_send_me.errors %}
-                        <li class='has-text-danger is-size-7'>・{{ error }}</li>
+                        <li class="has-text-danger is-size-7">・{{ error }}</li>
                         {% endfor %}
                     </ul>
                 </div>
             </section>
-            <section class='px-6 pb-6'>
-                <div class='field is-grouped'>
-                    <div class='control'>
-                        <button type='submit' class='button is-primary is-outlined'>
+            <section class="px-6 pb-6">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="submit" class="button is-primary is-outlined">
                             送信
                         </button>
                     </div>
-                    <div class='control'>
-                        <button type='button' onclick="history.back()" class='button is-outlined'>キャンセル</button>
+                    <div class="control">
+                        <button type="button" onclick="history.back()" class="button is-outlined">キャンセル</button>
                     </div>
                 </div>
             </section>

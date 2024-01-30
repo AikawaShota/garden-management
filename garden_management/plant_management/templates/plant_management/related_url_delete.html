@@ -1,18 +1,18 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block title %}{{ block.super }}関連URL削除{% endblock %}
 
 {% block main %}
-<div class='hero is-fullheight-with-navbar'>
+<div class="hero is-fullheight-with-navbar">
     <div class="hero-body">
-        <div class='container is-max-desktop'>
+        <div class="container is-max-desktop">
             <form method="post">
                 {% csrf_token %}
-                <h1 class='title'>「{{ url_info.name }} | {{ url_info.url }}」を削除しようとしています。</h1>
-                <h3 class='subtitle has-text-danger mb-0 mt-5'>削除したURLは元に戻すことはできません。</h3>
-                <h3 class='subtitle'>削除する場合は確定ボタンを押してください。</h3>
-                <button class='button is-info is-outlined' type='submit'>確定</button>
-                <button type='button' class='button is-outlined'
+                <h1 class="title">「{{ url_info.name }} | {{ url_info.url }}」を削除しようとしています。</h1>
+                <h3 class="subtitle has-text-danger mb-0 mt-5">削除したURLは元に戻すことはできません。</h3>
+                <h3 class="subtitle">削除する場合は確定ボタンを押してください。</h3>
+                <button class="button is-info is-outlined" type="submit">確定</button>
+                <button type="button" class="button is-outlined"
                     onclick="location.href=`{% url 'plant_management:detail' pk=object.plant_id %}`">キャンセル</button>
             </form>
         </div>
