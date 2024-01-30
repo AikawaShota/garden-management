@@ -1,7 +1,7 @@
 from . import forms
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
-from django.shortcuts import redirect
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (
     LoginView,
@@ -15,12 +15,26 @@ from django.contrib.auth.views import (
 class SignUpView(CreateView):
     form_class = forms.SignUpForm
     template_name = "authentication/signup.html"
-    success_url = reverse_lazy("authentication:login")
+    success_url = reverse_lazy("plant_management:list")
 
     def form_valid(self, form):
-        user = form.save()
-        self.object = user
-        return redirect(self.get_success_url())
+        # 継承元のform_validを呼び出してuserを保存するための返り値を取得。
+        response = super().form_valid(form)
+        email = form.cleaned_data["email"]
+        password = form.cleaned_data["password1"]
+        print(email, type(email))
+        print(password, type(password))
+        # authenticate関数はusernameとpassword認証が行い、有効だった場合はUserオブジェクトを返す。
+        user = authenticate(request=self.request, username=email, passowrd=password)
+        print(user)
+        # userオブジェクトがNoneかどうかの判定。
+        if user is not None:
+            # login関数でユーザをログインさせる。
+            login(self.request, user)
+        else:
+            # userオブジェクトがNoneの場合の処理。
+            pass
+        return response
 
 
 # ログイン
