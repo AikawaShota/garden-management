@@ -11,7 +11,8 @@
 <div class="hero is-fullheight-with-navbar pt-6">
     <div class="table-container mb-6">
         <h1 class="title">植物一覧</h1>
-        <button onclick="location.href=`{% url 'plant_management:add' %}`" type="button" class="button is-primary is-outlined mb-2">
+        <button onclick="location.href=`{% url 'plant_management:add' %}`" type="button"
+            class="button is-primary is-outlined mb-2">
             <span class="test-icon">
                 <span class="icon"><i class="fas fa-plus"></i></span>
                 <span>植物追加</span>
@@ -28,7 +29,8 @@
                             <div>
                                 {{ p.name }}
                                 <p class="has-text-grey-light plant-description"><small>{{ p.description }}</small></p>
-                                <p class="has-text-grey-light plant-description"><small>表示優先度：{{ p.priority }}</small></p>
+                                <p class="has-text-grey-light plant-description"><small>表示優先度：{{ p.priority }}</small>
+                                </p>
                             </div>
                         </a>
                     </td>
