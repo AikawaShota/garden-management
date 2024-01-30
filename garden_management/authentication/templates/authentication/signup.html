@@ -7,7 +7,7 @@
     <div class="container is-max-desktop">
         <section class="px-6 pt-6 pb-3">
             <h1 class="title is-3">ユーザー登録フォーム</h1>
-            <p class="has-text-danger is-size-7">※全項目必須です。</p>
+            <p class="sub-title has-text-danger">※全項目必須です。</p>
         </section>
         <!-- form -->
         <form method="POST">
@@ -71,7 +71,9 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <h2 class="title is-4">認証情報</h2>
+            </section>
+            <section class="px-6 pb-6">
+                <h2 class="title is-4">アカウント情報</h2>
                 <div class="field mb-5">
                     <label for="" class="label">ニックネーム</label>
                     <div class="control has-icons-left">
@@ -80,7 +82,7 @@
                             <i class="fas fa-envelope"></i>
                         </span>
                     </div>
-                    <p class="help">ニックネームは128文字未満である必要があります。半角英数字が推奨です。（一部の全角文字・記号は表示が崩れる可能性があります。）</p>
+                    <p class="help">お問い合わせの返信の際などに利用します。ニックネームは128文字未満である必要があります。</p>
                     <ul>
                         {% for error in form.nickname.errors %}
                         <li class="has-text-danger is-size-7">・{{ error }}</li>
