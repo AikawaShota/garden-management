@@ -22,11 +22,10 @@ class SignUpView(CreateView):
         response = super().form_valid(form)
         email = form.cleaned_data["email"]
         password = form.cleaned_data["password1"]
-        print(email, type(email))
-        print(password, type(password))
         # authenticate関数はusernameとpassword認証が行い、有効だった場合はUserオブジェクトを返す。
-        user = authenticate(request=self.request, username=email, passowrd=password)
-        print(user)
+        user = authenticate(
+            request=self.request, username=email, password=password
+        )
         # userオブジェクトがNoneかどうかの判定。
         if user is not None:
             # login関数でユーザをログインさせる。

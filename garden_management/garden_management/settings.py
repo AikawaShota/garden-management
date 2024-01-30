@@ -136,10 +136,6 @@ LOGIN_REDIRECT_URL = "plant_management:list"
 LOGOUT_REDIRECT_URL = "authentication:login"
 
 
-# Email認証用のカスタムAUTHENTICATION_BACKENDSを追加。
-AUTHENTICATION_BACKENDS = ["authentication.backends.EmailAuthBackend"]
-
-
 # MEDIA（画像ファイルなど）の設定
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"

@@ -13,13 +13,14 @@ from django import forms
 class SignUpForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ("email", "password1", "password2", "user_name")
+        fields = ("email", "password1", "password2", "nickname")
 
     email = forms.EmailField(
         required=True,
         max_length=255,
         widget=forms.EmailInput(
             attrs={
+                "autocomplete": "email",
                 "placeholder": "sample@example.com",
                 "class": "input"
             }
@@ -31,6 +32,7 @@ class SignUpForm(UserCreationForm):
         max_length=255,
         widget=forms.PasswordInput(
             attrs={
+                "autocomplete": "new-password",
                 "class": "input"
             }
         )
@@ -41,17 +43,19 @@ class SignUpForm(UserCreationForm):
         max_length=255,
         widget=forms.PasswordInput(
             attrs={
+                "autocomplete": "new-password",
                 "class": "input"
             }
         )
     )
 
-    user_name = forms.CharField(
+    nickname = forms.CharField(
         required=True,
         max_length=127,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "username",
+                "autocomplete": "nickname",
+                "placeholder": "nickname",
                 "class": "input"
             }
         )
@@ -68,6 +72,7 @@ class LoginForm(AuthenticationForm):
         max_length=255,
         widget=forms.EmailInput(
             attrs={
+                "autocomplete": "email",
                 "placeholder": "sample@example.com",
                 "class": "input"
             }
@@ -79,7 +84,8 @@ class LoginForm(AuthenticationForm):
         max_length=255,
         widget=forms.PasswordInput(
             attrs={
-                "class": "input",
+                "autocomplete": "current-password",
+                "class": "input"
             }
         )
     )
