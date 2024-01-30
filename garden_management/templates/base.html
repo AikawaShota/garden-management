@@ -1,38 +1,38 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang='ja'>
+<html lang="ja">
 
 <head>
-    <meta charset='UTF-8' />
-    <meta name='robots' content='noindex' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-    <link href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap' rel='stylesheet' />
-    <link rel='stylesheet' href="{% static 'css/sanitize.css' %}">
-    <link rel='stylesheet' href="{% static 'fa/css/all.min.css' %}" />
-    <link rel='stylesheet' href="{% static 'css/bulma.css' %}" />
-    <link rel='stylesheet' href="{% static 'css/style.css' %}" />
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/sanitize.css' %}">
+    <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <title>{% block title %}にわかん - {% endblock %}</title>
-    <link rel='shortcut icon' href="{% static 'img/favicon.png' %}" type='image/x-icon' />
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
     <!-- PWA -->
-    <link rel='manifest' href="{% static 'pwa/manifest.json' %}" />
+    <link rel="manifest" href="{% static 'pwa/manifest.json' %}" />
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
                 navigator.serviceWorker.register("{% url 'sw.js' %}").then(
                     function (registration) {
                         // Registration was successful
                         console.log(
-                            'ServiceWorker registration successful with scope: ',
+                            "ServiceWorker registration successful with scope: ",
                             registration.scope
                         );
                     },
                     function (err) {
                         // registration failed :(
                         console.log(
-                            'ServiceWorker registration failed: ',
+                            "ServiceWorker registration failed: ",
                             err
                         );
                     }
@@ -45,16 +45,16 @@
     {% endblock %}
 </head>
 
-<body class='has-navbar-fixed-top'>
+<body class="has-navbar-fixed-top">
     <!-- header -->
     <header>
-        <nav class='navbar is-primary is-fixed-top'>
-            <div class='navbar-brand'>
+        <nav class="navbar is-primary is-fixed-top">
+            <div class="navbar-brand">
                 <a href="{% url 'plant_management:list' %}" class="navbar-item px-2 py-0">
                     <img src="{% static 'img/logotype-transparent.png' %}" alt="にわかんのロゴタイプ。" class="logo-type">
                 </a>
                 {% if user.is_authenticated %}
-                <div class='navbar-burger' data-target='navbarExampleTransparentExample'>
+                <div class="navbar-burger" data-target="navbarExampleTransparentExample">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -89,7 +89,7 @@
                         <div class="navbar-dropdown is-boxed">
                             <!-- FAのアイコンのところで改行されないように、15文字(15em)文のwidthを持つ要素を挿入。 -->
                             <span class="navbar-item p-0" style="width:15em;"></span>
-                            <a class="navbar-item icon-text pr-0" href="{% url 'help:inquiry' %}">
+                            <a class="navbar-item icon-text pr-0" href="{% url "help:inquiry" %}">
                                 <span class="icon">
                                     <i class="fas fa-comments"></i>
                                 </span>
@@ -165,8 +165,8 @@
     <!-- END main -->
 
     <!-- footer -->
-    <footer class='footer has-background-primary'>
-        <div class='content has-text-centered has-text-warning-light'>
+    <footer class="footer has-background-primary">
+        <div class="content has-text-centered has-text-warning-light">
             <p>&copy; 2023 Aikawa Shota.</p>
         </div>
     </footer>
@@ -174,7 +174,6 @@
 </body>
 
 <script src="{% static 'js/scripts.js' %}"></script>
-
 {% block scripts %}
 {% endblock %}
 

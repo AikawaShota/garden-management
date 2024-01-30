@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block head %}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -8,23 +8,23 @@
 {% block title %}{{ block.super }}一覧{% endblock %}
 
 {% block main %}
-<div class='hero is-fullheight-with-navbar pt-6'>
-    <div class='table-container mb-6'>
-        <h1 class='title'>植物一覧</h1>
-        <button onclick="location.href=`{% url 'plant_management:add' %}`" type='button' class='button is-primary is-outlined mb-2'>
-            <span class='test-icon'>
+<div class="hero is-fullheight-with-navbar pt-6">
+    <div class="table-container mb-6">
+        <h1 class="title">植物一覧</h1>
+        <button onclick="location.href=`{% url 'plant_management:add' %}`" type="button" class="button is-primary is-outlined mb-2">
+            <span class="test-icon">
                 <span class="icon"><i class="fas fa-plus"></i></span>
                 <span>植物追加</span>
             </span>
         </button>
-        <table class='table is-bordered is-hoverable is-fullwidth plant-list'>
+        <table class="table is-bordered is-hoverable is-fullwidth plant-list">
             <tbody>
                 {% for p in plants %}
                 <tr>
-                    <td class='plant-list-image'><img src='/media/{{ p.image__path }}' alt='{{ p.image__alt }}'>
+                    <td class="plant-list-image"><img src="/media/{{ p.image__path }}" alt="{{ p.image__alt }}">
                     </td>
                     <td>
-                        <a class='detail-link' href="{% url 'plant_management:detail' pk=p.plant_id %}">
+                        <a class="detail-link" href="{% url 'plant_management:detail' pk=p.plant_id %}">
                             <div>
                                 {{ p.name }}
                                 <p class="has-text-grey-light plant-description"><small>{{ p.description }}</small></p>
@@ -32,14 +32,14 @@
                             </div>
                         </a>
                     </td>
-                    <td class='plant-list-watering'>
+                    <td class="plant-list-watering">
                         <!-- completed watering button -->
                         {% if p.watering_state.required is False %}
-                        <button disabled class='button is-dark is-fullwidth is-rounded is-outlined'
-                            data-id='{{ p.plant_id }}'>
-                            <span class='has-icon-left'>
-                                <span class='icon has-text-info'>
-                                    <i class='fas fa-tint'></i>
+                        <button disabled class="button is-dark is-fullwidth is-rounded is-outlined"
+                            data-id="{{ p.plant_id }}">
+                            <span class="has-icon-left">
+                                <span class="icon has-text-info">
+                                    <i class="fas fa-tint"></i>
                                 </span>
                                 {{ p.watering_state.message }}
                             </span>
@@ -49,11 +49,11 @@
                         <!-- watering button -->
                         {% if p.watering_state.required %}
                         {% csrf_token %}
-                        <button class='toggle-watering-complete button is-info is-fullwidth is-rounded is-outlined'
-                            data-id='{{ p.plant_id }}'>
-                            <span class='has-icon-left'>
-                                <span class='icon has-text-info'>
-                                    <i class='fas fa-tint'></i>
+                        <button class="toggle-watering-complete button is-info is-fullwidth is-rounded is-outlined"
+                            data-id="{{ p.plant_id }}">
+                            <span class="has-icon-left">
+                                <span class="icon has-text-info">
+                                    <i class="fas fa-tint"></i>
                                 </span>
                                 {{ p.watering_state.message }}
                             </span>
@@ -73,30 +73,30 @@
 <script>
     //完了、未完了ボタンを押したときの動き
     $(document).ready(function () {
-        $('.toggle-watering-complete').click(function () {
+        $(".toggle-watering-complete").click(function () {
             //1.plantID取得
-            var plantId = $(this).data('id');
+            var plantId = $(this).data("id");
             //2,Ajax送信処理
             $.ajax({
-                url: '/plant-management/watering-complete/' + plantId,
-                type: 'POST',
-                dataType: 'json',
+                url: "/plant-management/watering-complete/" + plantId,
+                type: "POST",
+                dataType: "json",
                 //3.CSRF処理
                 beforeSend: function (xhr, settings) {
-                    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                    xhr.setRequestHeader('X-CSRFToken', $('input[name="csrfmiddlewaretoken"]').val());
+                    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                    xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val());
                 },
                 //4.Ajax受信処理
                 success: function (data, textStatus, xhr) {
                     var elem = $(`button[data-id=${plantId}]`);
                     elem.replaceWith(
-                        `<button disabled class='button is-dark is-fullwidth is-rounded is-outlined'
+                        `<button disabled class="button is-dark is-fullwidth is-rounded is-outlined"
                         data-id=${plantId}>
-                        <span class='has-icon-left'>
-                            <span class='icon has-text-info'>
-                                <i class='fas fa-tint'></i>
+                        <span class="has-icon-left">
+                            <span class="icon has-text-info">
+                                <i class="fas fa-tint"></i>
                             </span>
-                            ${data['watering-state']['message']}
+                            ${data["watering-state"]["message"]}
                         </span>
                     </button>`
                     );

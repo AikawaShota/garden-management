@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block title %}{{ block.super }}ユーザ情報{% endblock %}
 
 {% block main %}
-<div class='hero is-fullheight-with-navbar'>
-    <div class='hero-body'>
-        <div class='container is-max-desktop'>
+<div class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
             <section class="pb-5">
                 <h1 class="title">ユーザー情報</h1>
             </section>
@@ -48,11 +48,11 @@
                     </tbody>
                 </table>
             </section>
-            <section class=''>
-                <div class='field is-grouped'>
-                    <div class='control'>
-                        <button type='button' onclick="location.href=`{% url 'plant_management:list' %}`"
-                            class='button is-outlined'>植物一覧</button>
+            <section class="">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="button" onclick="location.href=`{% url 'plant_management:list' %}`"
+                            class="button is-outlined">植物一覧</button>
                     </div>
                 </div>
             </section>

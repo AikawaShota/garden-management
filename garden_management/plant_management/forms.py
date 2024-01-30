@@ -1,40 +1,40 @@
 from django import forms
-from . import models
+from .models import Plant, Image, RelatedURL
 
 
-# 植物を追加するフォーム。
+# 植物追加フォーム。
 class AddPlantForm(forms.ModelForm):
     class Meta:
-        model = models.Plant
+        model = Plant
         fields = (
-            'name',
-            'image',
-            'watering_frequency',
-            'last_watering_date',
-            'description',
-            'priority'
+            "name",
+            "image",
+            "watering_frequency",
+            "last_watering_date",
+            "description",
+            "priority"
         )
 
     name = forms.CharField(
         max_length=255,
         widget=forms.TextInput(
             attrs={
-                'class': 'input',
-                'placeholder': 'バラ'
+                "class": "input",
+                "placeholder": "バラ"
             }
         )
     )
 
     image = forms.ModelChoiceField(
-        queryset=models.Image.objects.order_by('pk'),
-        empty_label='選択してください。'
+        queryset=Image.objects.order_by("pk"),
+        empty_label="選択してください。"
     )
 
     watering_frequency = forms.DurationField(
         widget=forms.TimeInput(
             attrs={
-                'class': 'input',
-                'placeholder': '1 00:00:00'
+                "class": "input",
+                "placeholder": "1 00:00:00"
             }
         )
     )
@@ -42,8 +42,8 @@ class AddPlantForm(forms.ModelForm):
     last_watering_date = forms.DateTimeField(
         widget=forms.DateTimeInput(
             attrs={
-                'class': 'input',
-                'type': 'datetime-local'
+                "class": "input",
+                "type": "datetime-local"
             }
         )
     )
@@ -53,8 +53,13 @@ class AddPlantForm(forms.ModelForm):
         max_length=4095,
         widget=forms.Textarea(
             attrs={
-                'class': 'textarea',
-                'placeholder': 'バラ（薔薇）は、バラ科バラ属の総称である[1][要ページ番号][2][要ページ番号][3][要ページ番号]。あるいは、そのうち特に園芸種（園芸バラ・栽培バラ）を総称する[1]（花が鑑賞用や食用とされる[4] ）。本項では、後者の園芸バラ・栽培バラを扱うこととする。\nwikipedia「バラ」より引用。'
+                "class": "textarea",
+                "placeholder": (
+                    "バラ（薔薇）は、バラ科バラ属の総称である[1][要ページ番号][2][要ページ番号][3][要ページ番号]。"
+                    "あるいは、そのうち特に園芸種（園芸バラ・栽培バラ）を総称する[1]（花が鑑賞用や食用とされる[4] ）。"
+                    "本項では、後者の園芸バラ・栽培バラを扱うこととする。\n"
+                    "wikipedia「バラ」より引用。"
+                )
             }
         )
     )
@@ -64,46 +69,46 @@ class AddPlantForm(forms.ModelForm):
         max_value=32767,
         widget=forms.NumberInput(
             attrs={
-                'class': 'input',
-                'placeholder': '0 ~ 32767'
+                "class": "input",
+                "placeholder": "0 ~ 32767"
             }
         )
     )
 
 
-# 植物を編集するフォーム。
+# 植物編集フォーム。
 class EditPlantForm(forms.ModelForm):
     class Meta:
-        model = models.Plant
+        model = Plant
         fields = (
-            'name',
-            'image',
-            'watering_frequency',
-            'last_watering_date',
-            'description',
-            'priority'
+            "name",
+            "image",
+            "watering_frequency",
+            "last_watering_date",
+            "description",
+            "priority"
         )
 
     name = forms.CharField(
         max_length=255,
         widget=forms.TextInput(
             attrs={
-                'class': 'input',
-                'placeholder': 'バラ'
+                "class": "input",
+                "placeholder": "バラ"
             }
         )
     )
 
     image = forms.ModelChoiceField(
-        queryset=models.Image.objects.order_by('pk'),
-        empty_label='選択してください。'
+        queryset=Image.objects.order_by("pk"),
+        empty_label="選択してください。"
     )
 
     watering_frequency = forms.DurationField(
         widget=forms.TimeInput(
             attrs={
-                'class': 'input',
-                'placeholder': '1 00:00:00'
+                "class": "input",
+                "placeholder": "1 00:00:00"
             }
         )
     )
@@ -111,8 +116,8 @@ class EditPlantForm(forms.ModelForm):
     last_watering_date = forms.DateTimeField(
         widget=forms.DateTimeInput(
             attrs={
-                'class': 'input',
-                'type': 'datetime-local'
+                "class": "input",
+                "type": "datetime-local"
             }
         )
     )
@@ -122,8 +127,13 @@ class EditPlantForm(forms.ModelForm):
         max_length=4095,
         widget=forms.Textarea(
             attrs={
-                'class': 'textarea',
-                'placeholder': 'バラ（薔薇）は、バラ科バラ属の総称である[1][要ページ番号][2][要ページ番号][3][要ページ番号]。あるいは、そのうち特に園芸種（園芸バラ・栽培バラ）を総称する[1]（花が鑑賞用や食用とされる[4] ）。本項では、後者の園芸バラ・栽培バラを扱うこととする。\nwikipedia「バラ」より引用。'
+                "class": "textarea",
+                "placeholder": (
+                    "バラ（薔薇）は、バラ科バラ属の総称である[1][要ページ番号][2][要ページ番号][3][要ページ番号]。"
+                    "あるいは、そのうち特に園芸種（園芸バラ・栽培バラ）を総称する[1]（花が鑑賞用や食用とされる[4] ）。"
+                    "本項では、後者の園芸バラ・栽培バラを扱うこととする。\n"
+                    "wikipedia「バラ」より引用。"
+                )
             }
         )
     )
@@ -133,28 +143,28 @@ class EditPlantForm(forms.ModelForm):
         max_value=32767,
         widget=forms.NumberInput(
             attrs={
-                'class': 'input',
-                'placeholder': '0 ~ 32767'
+                "class": "input",
+                "placeholder": "0 ~ 32767"
             }
         )
     )
 
 
-# 関連URLを追加するフォーム。
+# 関連URL追加フォーム。
 class AddRelatedUrlForm(forms.ModelForm):
     class Meta:
-        model = models.RelatedURL
+        model = RelatedURL
         fields = (
-            'name',
-            'url'
+            "name",
+            "url"
         )
 
     name = forms.CharField(
         max_length=2047,
         widget=forms.TextInput(
             attrs={
-                'class': 'input',
-                'placeholder': 'サイト名など'
+                "class": "input",
+                "placeholder": "サイト名など"
             }
         )
     )
@@ -163,8 +173,8 @@ class AddRelatedUrlForm(forms.ModelForm):
         max_length=2047,
         widget=forms.URLInput(
             attrs={
-                'class': 'input',
-                'placeholder': 'niwakan.mesekit.com'
+                "class": "input",
+                "placeholder": "niwakan.mesekit.com"
             }
         )
     )
