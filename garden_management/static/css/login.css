@@ -45,23 +45,22 @@ body.has-navbar-fixed-top {
   .title,
   .subtitle,
   .label,
-  .input,
   button.is-outlined:hover {
     color: #f9f9f9;
     text-shadow: 0 0 5px black;
     border-color: rgba(255, 255, 255, 0.5);
   }
   .fas {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.4);
   }
   .fas:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.9);
   }
   .input:hover and :not(.input:focus) {
     border-color: rgba(255, 255, 255, 0.8);
   }
   .input:focus ~ .icon > .fas {
-    color: #f9f9f9;
+    color: rgba(0, 0, 0, 0.7);
   }
   .input::-moz-placeholder {
     color: rgba(255, 255, 255, 0.3);
