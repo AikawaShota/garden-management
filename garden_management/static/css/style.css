@@ -4392,6 +4392,11 @@ a:hover {
   color: #ff78a0;
 }
 
+table.table > tbody > tr > td,
+table.table > tbody > tr > th {
+  vertical-align: middle;
+}
+
 /* ==========
 END layout
 ========== */
