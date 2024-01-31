@@ -19,6 +19,12 @@ urlpatterns = [
         views.UserInformationView.as_view(),
         name="user-information"
     ),
+    # ユーザ情報編集画面
+    path(
+        "user-information/edit",
+        views.UserInformationEditView.as_view(),
+        name="user-information-edit"
+    ),
     # パスワード変更
     path(
         "password-change",
