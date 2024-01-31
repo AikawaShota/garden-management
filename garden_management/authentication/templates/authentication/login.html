@@ -63,13 +63,20 @@
                 <section class="pt-4">
                     <div class="field">
                         <div class="control">
-                            <button type="submit" class="button is-info is-outlined is-fullwidth">ログイン</button>
+                            <button type="submit" class="button is-info is-outlined is-fullwidth is-login">ログイン</button>
                         </div>
                     </div>
                     <input type="hidden" name="next" value="{{ next }}">
                 </section>
         </form>
-        <a id="signup-link" href="{% url 'authentication:signup' %}">新規登録はこちら</a>
+        <a id="signUp" href="{% url 'authentication:signup' %}">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-user-plus"></i>
+                </span>
+                <span>新規登録はこちら</span>
+            </span>
+        </a>
         <!-- パスワードリセット機能を実装した際にhtmlのコメントとpythonのコメント（#）を外す。 -->
         <!-- <p><a href="{# % url "password_reset" %}">Lost password?</a></p> -->
     </div>
