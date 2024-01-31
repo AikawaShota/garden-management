@@ -7,7 +7,11 @@ from django.contrib.auth.views import (
     LoginView,
     LogoutView,
     PasswordChangeView,
-    PasswordChangeDoneView
+    PasswordChangeDoneView,
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView
 )
 
 
@@ -54,12 +58,37 @@ class UserInformationView(LoginRequiredMixin, TemplateView):
 
 
 # パスワード変更画面
-class PasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     form_class = forms.CustomPasswordChangeForm
     template_name = "authentication/password_change.html"
     success_url = reverse_lazy("authentication:password-change-done")
 
 
 # パスワード変更完了画面
-class PasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
+class CustomPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = "authentication/password_change_done.html"
+
+
+# パスワードリセットのメール送信画面
+class CustomPasswordResetView(PasswordResetView):
+    template_name = "authentication/password_reset.html"
+    form_class = forms.CustomPasswordResetForm
+    email_template_name = "email/custom_password_reset_email.html"
+    subject_template_name = "email/custom_password_reset_subject.txt"
+    success_url = reverse_lazy('authentication:password-reset-done')
+    from_email = "inquiry@niwakan.mesekit.com"
+
+
+# パスワードリセットのメール送信後画面
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = "authentication/password_reset_done.html"
+
+
+# パスワードリセットのURLにアクセスした際のパスワード更新画面
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "authentication/password_reset_confirm.html"
+
+
+# パスワードリセットが完了した際の画面
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "authentication/password_reset_complete.html"
