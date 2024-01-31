@@ -4413,7 +4413,8 @@ END header
 ========== */
 #buttonEye,
 #buttonEye1,
-#buttonEye2 {
+#buttonEye2,
+#buttonEye3 {
   pointer-events: auto;
 }
 
