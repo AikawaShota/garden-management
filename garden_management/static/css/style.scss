@@ -27,17 +27,18 @@ END Bulma
 layout
 ========== */
 
-/* Google Font */
+// Google Font
 body,
 button {
     font-family: "Noto Sans JP";
 }
 
-/* リンク */
+// 訪問済みリンクの色を設定。（通常時と同じ色に変更。）
 a:visited and :not(a.navbar-item) {
-    color: #485FC7;
+    color: #485fc7;
 }
 
+// リンクにhoverしたときの色の設定。
 a:hover {
     color: #ff78a0;
 }
@@ -51,7 +52,7 @@ END layout
 header
 ========== */
 
-/* navigation */
+// navigation   
 .navbar-item .logo-type {
     max-height: 40px;
 }
@@ -65,6 +66,7 @@ END header
 パスワード表示切替ボタン
 ========== */
 
+// パスワード表示切替用faがクリック（タップ）できるよう変更。
 #buttonEye,
 #buttonEye1,
 #buttonEye2,
@@ -72,7 +74,7 @@ END header
     pointer-events: auto;
 }
 
-
+// パスワード表示切替用faにhoverしたときに色を灰色にする。
 .fa-eye:hover,
 .fa-eye-slash:hover {
     color: #4a4a4a;
@@ -87,7 +89,7 @@ END パスワード表示切替ボタン
 table
 ========== */
 
-/* table-container */
+// table-container PCの場合画面の幅の80%を利用。
 @media screen and (min-width: 769px) {
     .table-container {
         width: 80%;
@@ -95,6 +97,7 @@ table
     }
 }
 
+// table-container モバイルの場合画面の幅の95%を利用。
 @media screen and (max-width: 768px) {
     .table-container {
         width: 95%;
@@ -102,17 +105,18 @@ table
     }
 }
 
+// テーブルの幅を固定。
 .plant-list {
     table-layout: fixed;
     width: 100%;
 }
 
-/* plant-list */
+// tdの要素を上下中央ぞろえ。
 .plant-list>tbody>tr>td {
     vertical-align: middle;
 }
 
-/* img */
+// 植物の画像の設定。
 .plant-list-image {
     padding: 0 !important;
     text-align: center !important;
@@ -126,25 +130,26 @@ table
     display: block;
 }
 
-/* description */
+// 植物の説明の設定。
 .plant-description {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* watering */
+// 水やり状態の要素の幅を指定。
 .plant-list-watering {
     width: 128px;
 }
 
+// 水やりボタンのホバー時にテキストの色を変更。
 .toggle-watering-complete:hover {
     .fas {
         color: white;
     }
 }
 
-/* detail link */
+// 詳細画面へのリンクの設定。
 .detail-link {
     color: #4a4a4a;
 }
@@ -166,23 +171,25 @@ END table
 plant detail
 ========== */
 
+// 植物の画像の設定。
 #plant-image-container {
     width: 200px;
     height: 200px;
 }
 
+// 水やりボタンの設定。
 .detail-watering-button {
     width: 171px !important;
 }
 
-/* related-url */
+// 関連urlの設定。
 .related-url-container {
     margin: 10px 0;
 }
 
 .related-url {
     display: inline-block;
-    width: 65vw;
+    padding-right: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
