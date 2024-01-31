@@ -4379,15 +4379,13 @@ END Bulma
 /* ==========
 layout
 ========== */
-/* Google Font */
 body,
 button {
   font-family: "Noto Sans JP";
 }
 
-/* リンク */
 a:visited and :not(a.navbar-item) {
-  color: #485FC7;
+  color: #485fc7;
 }
 
 a:hover {
@@ -4400,7 +4398,6 @@ END layout
 /* ==========
 header
 ========== */
-/* navigation */
 .navbar-item .logo-type {
   max-height: 40px;
 }
@@ -4429,7 +4426,6 @@ END パスワード表示切替ボタン
 /* ==========
 table
 ========== */
-/* table-container */
 @media screen and (min-width: 769px) {
   .table-container {
     width: 80%;
@@ -4447,12 +4443,10 @@ table
   width: 100%;
 }
 
-/* plant-list */
 .plant-list > tbody > tr > td {
   vertical-align: middle;
 }
 
-/* img */
 .plant-list-image {
   padding: 0 !important;
   text-align: center !important;
@@ -4467,14 +4461,12 @@ table
   display: block;
 }
 
-/* description */
 .plant-description {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* watering */
 .plant-list-watering {
   width: 128px;
 }
@@ -4483,7 +4475,6 @@ table
   color: white;
 }
 
-/* detail link */
 .detail-link {
   color: #4a4a4a;
 }
@@ -4511,14 +4502,13 @@ plant detail
   width: 171px !important;
 }
 
-/* related-url */
 .related-url-container {
   margin: 10px 0;
 }
 
 .related-url {
   display: inline-block;
-  width: 65vw;
+  padding-right: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
