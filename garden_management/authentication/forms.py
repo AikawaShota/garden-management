@@ -9,11 +9,13 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import password_validation, get_user_model
 from django import forms
 
+CustomUserModel = get_user_model()
+
 
 # ユーザ登録フォーム
 class SignUpForm(UserCreationForm):
     class Meta:
-        model = get_user_model()
+        model = CustomUserModel
         fields = ("email", "password1", "password2", "nickname")
 
     email = forms.EmailField(
@@ -144,3 +146,9 @@ class CustomPasswordResetForm(PasswordResetForm):
             }
         )
     )
+
+
+# ユーザ情報編集フォーム
+class UserInformationEditForm(forms.ModelForm):
+    class Meta:
+        model = CustomUserModel
