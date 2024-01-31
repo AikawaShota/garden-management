@@ -22,7 +22,7 @@ body.has-navbar-fixed-top {
   text-shadow: 0 0 5px black;
 }
 
-#signup-link:hover {
+#signUp:hover {
   color: #ff78a0;
 }
 
@@ -44,23 +44,31 @@ body.has-navbar-fixed-top {
   }
   .title,
   .subtitle,
-  .label,
-  button.is-outlined:hover {
+  .label {
     color: #f9f9f9;
     text-shadow: 0 0 5px black;
-    border-color: rgba(255, 255, 255, 0.5);
   }
-  .fas {
-    color: rgba(0, 0, 0, 0.4);
+  .input {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
   }
-  .fas:hover {
-    color: rgba(0, 0, 0, 0.9);
+  .input:focus {
+    border-color: #fff;
   }
-  .input:hover and :not(.input:focus) {
-    border-color: rgba(255, 255, 255, 0.8);
+  .input ~ .icon > .fas,
+  .input ~ .icon > .far {
+    color: rgba(255, 255, 255, 0.3);
   }
-  .input:focus ~ .icon > .fas {
-    color: rgba(0, 0, 0, 0.7);
+  .input:hover ~ .icon > .fas,
+  .input:hover ~ .icon > .far {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .input:focus ~ .icon > .fas,
+  .input:focus ~ .icon > .far {
+    color: #fff;
+  }
+  #buttonEye:hover {
+    color: #fff;
   }
   .input::-moz-placeholder {
     color: rgba(255, 255, 255, 0.3);
@@ -68,14 +76,35 @@ body.has-navbar-fixed-top {
   .input::placeholder {
     color: rgba(255, 255, 255, 0.3);
   }
+  .input:hover::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .input:hover::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .input:focus::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .input:focus::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
   .input,
-  .button.is-info.is-outlined {
+  button.is-info.is-outlined.is-login {
     background-color: rgba(0, 0, 0, 0.4);
   }
-  .button.is-info.is-outlined:hover {
-    border-color: rgba(255, 255, 255, 0.5);
+  #signUp,
+  #signUp:visited {
+    color: #6c90e6;
   }
-  #signup-link {
+  button.is-info.is-outlined.is-login {
     color: #78a0ff;
+  }
+  button.is-info.is-outlined.is-login {
+    border-color: #78a0ff;
+  }
+  button.is-info.is-outlined.is-login:hover,
+  button.is-info.is-outlined.is-login:focus {
+    background-color: #78a0ff;
+    border-color: #78a0ff;
   }
 }/*# sourceMappingURL=login.css.map */

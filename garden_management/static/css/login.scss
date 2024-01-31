@@ -1,12 +1,15 @@
+// Hide header and footer.
 header,
 footer {
     display: none;
 }
 
+// Removed padding for navigation.
 body.has-navbar-fixed-top {
     padding-top: 0;
 }
 
+// Set the image to be displayed on the login screen.
 .login-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url("../img/garden.jpg");
     background-size: cover;
@@ -16,27 +19,33 @@ body.has-navbar-fixed-top {
     display: table;
 }
 
+// Set the text to be displayed over the image on the login screen.
 .login-image-text {
     display: table-cell;
     vertical-align: middle;
     text-shadow: 0 0 5px black;
 }
 
-#signup-link:hover {
+// ユーザ登録リンクのhover時の色の設定。
+#signUp:hover {
     color: #ff78a0;
 }
 
+// Adjustment of line breaks in app info text.
 @media screen and (max-width:832px) {
     .br-pc {
         display: none;
     }
 }
 
+// Single column display.
 @media screen and (max-width:768px) {
+    // ログイン画像を非表示に。
     .login-image {
         display: none;
     }
 
+    // フォームの背景画像として画像を表示。
     .login-form {
         background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url("../img/garden.jpg");
         background-size: cover;
@@ -45,45 +54,90 @@ body.has-navbar-fixed-top {
         height: 100vh;
     }
 
+    // 画像上に表示するテキストの設定。
     .title,
     .subtitle,
-    .label,
-    button.is-outlined:hover {
+    .label {
         color: #f9f9f9;
         text-shadow: 0 0 5px black;
-        border-color: rgba(255, 255, 255, 0.5);
     }
 
-    .fas {
-        color: rgba(0, 0, 0, 0.4);
+    // 通常時のinputの文字色とボーダ色の設定。
+    .input {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.3);
     }
 
-    .fas:hover {
-        color: rgba(0, 0, 0, 0.9);
+    // inputがfocus時にborder-colorをwhiteにする。
+    .input:focus {
+        border-color: #fff;
     }
 
-    .input:hover and :not(.input:focus) {
-        border-color: rgba(255, 255, 255, 0.8);
+    // 通常時のfaアイコンの色の設定。
+    .input~.icon>.fas,
+    .input~.icon>.far {
+        color: rgba(255, 255, 255, 0.3);
     }
 
-    .input:focus~.icon>.fas {
-        color: rgba(0, 0, 0, 0.7);
+    // inputがhover時にfaのアイコンをやや明るくする。
+    .input:hover~.icon>.fas,
+    .input:hover~.icon>.far {
+        color: rgba(255, 255, 255, 0.5);
     }
 
+    // inputがfocus時にfaのアイコンをwhiteにする。
+    .input:focus~.icon>.fas,
+    .input:focus~.icon>.far {
+        color: #fff;
+    }
+
+    // パスワード表示切替のfaにhoverしたとき、whiteにする。
+    #buttonEye:hover {
+        color: #fff;
+    }
+
+    // placeholderの文字色を灰色にする。
     .input::placeholder {
         color: rgba(255, 255, 255, 0.3);
     }
 
+    // inputがhover時のplaceholderの色を明るくする。
+    .input:hover::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    // inputがfocus時のplaceholderの色を明るくする。
+    .input:focus::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    // inputとボタンの背景を暗くする。
     .input,
-    .button.is-info.is-outlined {
+    button.is-info.is-outlined.is-login {
         background-color: rgba(0, 0, 0, 0.4);
     }
 
-    .button.is-info.is-outlined:hover {
-        border-color: rgba(255, 255, 255, 0.5);
+    // ユーザ登録リンクの色を設定。
+    #signUp,
+    #signUp:visited {
+        color: #6c90e6;
     }
 
-    #signup-link {
+    // 通常時のログインボタンの色を水色に。
+    button.is-info.is-outlined.is-login {
         color: #78a0ff;
     }
+
+    // ログインボタンのボーダ色を明るく。
+    button.is-info.is-outlined.is-login {
+        border-color: #78a0ff;
+    }
+
+    // ログインボタンのhover, focus時の背景色を明るく。
+    button.is-info.is-outlined.is-login:hover,
+    button.is-info.is-outlined.is-login:focus {
+        background-color: #78a0ff;
+        border-color: #78a0ff;
+    }
 }
+// END Single column display.
