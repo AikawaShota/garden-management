@@ -60,7 +60,15 @@
                         </span>
                     </div>
                 </div>
-                <section class="pt-4">
+                <a href="{% url 'authentication:password-reset' %}" id="passwordReset">
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="far fa-question-circle"></i>
+                        </span>
+                        <span>パスワードが不明の場合（パスワードリセット）</span>
+                    </span>
+                </a>
+                <section class="pt-5">
                     <div class="field">
                         <div class="control">
                             <button type="submit" class="button is-info is-outlined is-fullwidth is-login">ログイン</button>

@@ -26,8 +26,9 @@ body.has-navbar-fixed-top {
     text-shadow: 0 0 5px black;
 }
 
-// ユーザ登録リンクのhover時の色の設定。
-#signUp:hover {
+// ユーザ登録リンク・パスワードリセットのhover時の色の設定。
+#signUp:hover,
+#passwordReset:hover {
     color: #ff78a0;
 }
 
@@ -117,9 +118,11 @@ body.has-navbar-fixed-top {
         background-color: rgba(0, 0, 0, 0.4);
     }
 
-    // ユーザ登録リンクの色を設定。
+    // ユーザ登録リンク・パスワードリセットの色を設定。
     #signUp,
-    #signUp:visited {
+    #signUp:visited,
+    #passwordReset,
+    #passwordReset:visited {
         color: #6c90e6;
     }
 

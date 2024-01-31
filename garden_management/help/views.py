@@ -16,9 +16,9 @@ class InquiryFormView(LoginRequiredMixin, FormView):
         subject = form.cleaned_data["subject"]
         message = form.cleaned_data["message"]
         user = self.request.user
-        user_name = user.user_name
+        nickname = user.nickname
         user_email = user.email
-        send_inquiry_mail(category, subject, message, user_name, user_email)
+        send_inquiry_mail(category, subject, message, nickname, user_email)
         return super().form_valid(form)
 
 

@@ -22,7 +22,8 @@ body.has-navbar-fixed-top {
   text-shadow: 0 0 5px black;
 }
 
-#signUp:hover {
+#signUp:hover,
+#passwordReset:hover {
   color: #ff78a0;
 }
 
@@ -93,7 +94,9 @@ body.has-navbar-fixed-top {
     background-color: rgba(0, 0, 0, 0.4);
   }
   #signUp,
-  #signUp:visited {
+  #signUp:visited,
+  #passwordReset,
+  #passwordReset:visited {
     color: #6c90e6;
   }
   button.is-info.is-outlined.is-login {

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import (
     AuthenticationForm,
     UsernameField,
     PasswordChangeForm,
+    PasswordResetForm
 )
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import password_validation, get_user_model
@@ -17,7 +18,7 @@ class SignUpForm(UserCreationForm):
 
     email = forms.EmailField(
         required=True,
-        max_length=255,
+        max_length=254,
         widget=forms.EmailInput(
             attrs={
                 "autocomplete": "email",
@@ -69,7 +70,7 @@ class LoginForm(AuthenticationForm):
 
     username = UsernameField(
         required=True,
-        max_length=255,
+        max_length=254,
         widget=forms.EmailInput(
             attrs={
                 "autocomplete": "email",
@@ -128,4 +129,18 @@ class CustomPasswordChangeForm(PasswordChangeForm):
                 "class": "input",
             }
         ),
+    )
+
+
+# パスワードリセット用メール送信用メールアドレス入力フォーム
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(
+        max_length=254,
+        widget=forms.EmailInput(
+            attrs={
+                "autocomplete": "email",
+                "placeholder": "sample@example.com",
+                "class": "input"
+            }
+        )
     )

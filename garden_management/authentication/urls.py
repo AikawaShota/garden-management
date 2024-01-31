@@ -22,13 +22,37 @@ urlpatterns = [
     # パスワード変更
     path(
         "password-change",
-        views.PasswordChangeView.as_view(),
+        views.CustomPasswordChangeView.as_view(),
         name="password-change"
     ),
     # パスワード変更完了画面
     path(
         "password-change/done",
-        views.PasswordChangeDoneView.as_view(),
+        views.CustomPasswordChangeDoneView.as_view(),
         name="password-change-done"
+    ),
+    # パスワードリセット用メール送信画面
+    path(
+        "password-reset",
+        views.CustomPasswordResetView.as_view(),
+        name="password-reset"
+    ),
+    # パスワードリセット用メール送信後画面
+    path(
+        "password-reset/done",
+        views.CustomPasswordResetDoneView.as_view(),
+        name="password-reset-done"
+    ),
+    # パスワードリセットフォーム画面
+    path(
+        "password-reset/comfirm/<uidb64>/<token>",
+        views.CustomPasswordResetConfirmView.as_view(),
+        name="password-reset-confirm"
+    ),
+    # パスワードリセット完了画面
+    path(
+        "password-reset/complete",
+        views.CustomPasswordResetCompleteView.as_view(),
+        name="password-reset-complete"
     )
 ]

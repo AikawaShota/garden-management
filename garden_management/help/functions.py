@@ -5,14 +5,16 @@ from django.core.mail import BadHeaderError, send_mail
 
 # 問い合わせメールの作成。
 def send_inquiry_mail(
-        category, subject, message, user_name, from_email, **kwargs):
+        category, subject, message, nickname, from_email, **kwargs):
     message = (
-        "お問い合わせ先サイト：にわかん（niwakan.mesekit.com）\n"
+        "お問い合わせ先サイト：にわかん（https://niwakan.mesekit.com）\n"
         f"お問い合わせのカテゴリ：{category}\n"
         "お問い合わせ内容：\n"
-        f"{message}"
+        f"{message}\n"
+        "\n"
+        "にわかん 管理者"
     )
-    from_email = f"{user_name} <{from_email}>"
+    from_email = f"{nickname} <{from_email}>"
     recipient_list = [settings.EMAIL_HOST_USER]
     try:
         send_mail(subject, message, from_email, recipient_list, **kwargs)
