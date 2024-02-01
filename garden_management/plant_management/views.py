@@ -3,6 +3,7 @@ from . import forms
 from . import mixins
 from .models import Plant, RelatedURL
 from .functions import get_watering_state
+from utilities.mixins import OwnerOnlyMixin
 from django.views import generic
 from django.http import JsonResponse
 from django.shortcuts import redirect
@@ -65,7 +66,7 @@ def complete_watering(request, pk):
 
 # 植物詳細
 class PlantDetailView(
-    mixins.OwnerOnlyMixin, LoginRequiredMixin, generic.DetailView
+    OwnerOnlyMixin, LoginRequiredMixin, generic.DetailView
 ):
     model = Plant
     template_name = "plant_management/plant_detail.html"
@@ -153,7 +154,7 @@ class RelatedUrlAddView(
 
 # 関連URL削除
 class RelatedUrlDeleteView(
-    mixins.OwnerOnlyMixin, LoginRequiredMixin, generic.DeleteView
+    OwnerOnlyMixin, LoginRequiredMixin, generic.DeleteView
 ):
     template_name = "plant_management/related_url_delete.html"
     model = RelatedURL

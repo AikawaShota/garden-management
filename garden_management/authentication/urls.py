@@ -21,7 +21,7 @@ urlpatterns = [
     ),
     # ユーザ情報編集画面
     path(
-        "user-information/edit",
+        "user-information/edit/<int:pk>",
         views.UserInformationEditView.as_view(),
         name="user-information-edit"
     ),

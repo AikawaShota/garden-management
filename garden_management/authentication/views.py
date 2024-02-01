@@ -1,4 +1,5 @@
 from . import forms
+from utilities.mixins import LoginUserOnlyMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
 from django.contrib.auth import login, authenticate, get_user_model
@@ -58,11 +59,15 @@ class UserInformationView(LoginRequiredMixin, TemplateView):
 
 
 # ユーザ情報(email, nickname)編集画面
-class UserInformationEditView(LoginRequiredMixin, UpdateView):
+class UserInformationEditView(
+    LoginUserOnlyMixin,
+    LoginRequiredMixin,
+    UpdateView
+):
     template_name = "authentication/user_information_edit.html"
     form_class = forms.UserInformationEditForm
     model = get_user_model()
-    success_url = "authentication:user-information"
+    success_url = reverse_lazy("authentication:user-information")
 
 
 # パスワード変更画面
