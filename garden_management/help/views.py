@@ -1,4 +1,4 @@
-from .functions import send_inquiry_mail
+from .functions import send_inquiry_mail, send_inquiry_mail_to_user
 from .forms import InquiryForm
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
@@ -15,10 +15,15 @@ class InquiryFormView(LoginRequiredMixin, FormView):
         category = form.cleaned_data["category"]
         subject = form.cleaned_data["subject"]
         message = form.cleaned_data["message"]
+        is_send_user = form.cleaned_data["is_send_user"]
         user = self.request.user
         nickname = user.nickname
         user_email = user.email
         send_inquiry_mail(category, subject, message, nickname, user_email)
+        if is_send_user:
+            send_inquiry_mail_to_user(
+                category, subject, message, nickname, user_email
+            )
         return super().form_valid(form)
 
 
