@@ -10,50 +10,45 @@
                 <h1 class="title">ユーザー情報</h1>
             </section>
             <section class="pb-6">
-                <table class="table is-striped">
+                <table class="table is-bordered is-striped is-fullwidth">
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
                         <tr>
                             <th>ニックネーム</th>
                             <td>{{ request.user.nickname }}</td>
-                            <td>
-                                <button class="button is-info is-outlined" onclick="location.href=`#`">変更（未）</button>
-                            </td>
                         </tr>
                         <tr>
                             <th>Email</th>
                             <td>{{ request.user.email }}</td>
-                            <td>
-                                <button class="button is-info is-outlined" onclick="location.href=`#`">変更（未）</button>
-                            </td>
                         </tr>
                         <tr>
                             <th>パスワード</th>
                             <td>暗号化しているため、表示できません。</td>
-                            <td>
-                                <button class="button is-info is-outlined"
-                                    onclick="location.href=`{% url 'authentication:password-change' %}`">変更</button>
-                            </td>
                         </tr>
                         <tr>
                             <th>登録日</th>
                             <td>{{ request.user.date_joined }}</td>
-                            <td></td>
                         </tr>
                         <tr></tr>
                     </tbody>
                 </table>
             </section>
             <section class="">
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button type="button" onclick="location.href=`{% url 'plant_management:list' %}`"
-                            class="button is-outlined">植物一覧</button>
-                    </div>
+                <div class="buttons">
+                    <button class="button is-info is-outlined"
+                        onclick="location.href=`{% url 'authentication:password-change' %}`">
+                        <span class="icon">
+                            <i class="fas fa-unlock"></i>
+                        </span>
+                        <span>パスワード変更</span>
+                    </button>
+                    <button class="button is-info is-outlined"
+                        onclick="location.href=`{% url 'authentication:user-information-edit' pk=request.user.user_id %}`">
+                        <span class="icon">
+                            <i class="fas fa-user-edit"></i>
+                        </span>
+                        <span>ユーザー情報編集</span>
+                    </button>
+                    <button type="button" onclick="history.back()" class="button is-outlined">戻る</button>
                 </div>
             </section>
         </div>

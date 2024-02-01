@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }}ユーザー情報編集{% endblock %}
+
+{% block main %}
+<div class="hero is-fullheight-with-navbar">
+    <div class="container is-max-desktop">
+        <section class="px-6 pt-6 pb-3">
+            <h1 class="title is-3">ユーザー情報編集フォーム</h1>
+        </section>
+        <!-- form -->
+        <form method="POST">
+            {% csrf_token %}
+            <section class="px-6 pb-3">
+                <p class="has-text-danger">
+                    {{ form.non_field_errors }}
+                </p>
+            </section>
+            <section class="px-6 pb-6">
+                <div class="field mb-5">
+                    <label for="" class="label">メールアドレス</label>
+                    <div class="control has-icons-left">
+                        {{ form.email }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                    </div>
+                    <p class="help">既に登録してあるメールアドレスは利用できません。</p>
+                    <ul>
+                        {% for error in form.email.errors %}
+                        <li class="has-text-danger is-size-7">・{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="field mb-5">
+                    <label for="" class="label">ニックネーム</label>
+                    <div class="control has-icons-left">
+                        {{ form.nickname }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                    </div>
+                    <p class="help">お問い合わせの返信の際などに利用します。ニックネームは128文字未満である必要があります。</p>
+                    <ul>
+                        {% for error in form.nickname.errors %}
+                        <li class="has-text-danger is-size-7">・{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+            <section class="px-6 pb-6">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="submit" class="button is-info is-outlined">
+                            保存
+                        </button>
+                    </div>
+                    <div class="control">
+                        <button type="button" onclick="history.back()"
+                            class="button is-outlined">キャンセル</button>
+                    </div>
+                </div>
+            </section>
+        </form>
+        <!-- END form -->
+    </div>
+</div>
+{% endblock %}

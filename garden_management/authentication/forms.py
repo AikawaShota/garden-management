@@ -152,3 +152,29 @@ class CustomPasswordResetForm(PasswordResetForm):
 class UserInformationEditForm(forms.ModelForm):
     class Meta:
         model = CustomUserModel
+        fields = (
+            "nickname",
+            "email"
+        )
+
+    nickname = forms.CharField(
+        max_length=127,
+        widget=forms.TextInput(
+            attrs={
+                "class": "input",
+                "placeholder": "nickname",
+                "autocomplete": "nickname"
+            }
+        )
+    )
+
+    email = forms.EmailField(
+        max_length=254,
+        widget=forms.EmailInput(
+            attrs={
+                "class": "input",
+                "placeholder": "sample@example.com",
+                "autocomplete": "email"
+            }
+        )
+    )
