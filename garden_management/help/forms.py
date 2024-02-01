@@ -28,7 +28,7 @@ class InquiryForm(forms.Form):
         ),
     )
 
-    is_send_me = forms.BooleanField(
+    is_send_user = forms.BooleanField(
         required=False,
         widget=forms.CheckboxInput(
             attrs={

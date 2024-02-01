@@ -72,14 +72,14 @@
                 <div class="field">
                     <div class="control">
                         <label class="label checkbox icon-text">
-                            {{ form.is_send_me }}
-                            お問い合わせ内容を自身にも送る。（未）
+                            {{ form.is_send_user }}
+                            お問い合わせ内容を自身にも送る。
                             <i class="fas fa-paper-plane"></i>
                         </label>
                     </div>
-                    <p class="help">ここにチェックして頂くと、お問い合わせ内容のコピーをご登録のメールアドレスに対して送信します。（未実装）</p>
+                    <p class="help">ここにチェックして頂くと、お問い合わせ内容のコピーをご登録のメールアドレスに対して送信します。</p>
                     <ul>
-                        {% for error in form.is_send_me.errors %}
+                        {% for error in form.is_send_user.errors %}
                         <li class="has-text-danger is-size-7">・{{ error }}</li>
                         {% endfor %}
                     </ul>
