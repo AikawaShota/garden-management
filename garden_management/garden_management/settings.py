@@ -113,7 +113,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), )
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), )
 STATIC_URL = "/static/"
 
 
@@ -140,3 +140,7 @@ LOGOUT_REDIRECT_URL = "authentication:login"
 # MEDIA（画像ファイルなど）の設定
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+
+
+# 本番環境でstaticファイルをまとめるための設定。
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
