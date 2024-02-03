@@ -100,6 +100,8 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 # パスワードリセットのURLにアクセスした際のパスワード更新画面
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "authentication/password_reset_confirm.html"
+    form_class = forms.CustomPasswordSetForm
+    success_url = reverse_lazy("authentication:password-reset-complete")
 
 
 # パスワードリセットが完了した際の画面
