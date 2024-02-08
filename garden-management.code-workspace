@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		// Sassのコンパイルによる出力設定
+		"liveSassCompile.settings.formats": [
+			{
+				"format": "expanded",
+				"extensionName": ".css",
+				"savePath": "/garden_management/static/css"
+			}
+		],
+		"liveSassCompile.settings.excludeList": [
+			"/garden_management/static/bulma/sass/**",
+		],
+	}
+}
