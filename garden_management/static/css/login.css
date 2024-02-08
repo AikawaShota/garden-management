@@ -93,6 +93,14 @@ body.has-navbar-fixed-top {
   button.is-info.is-outlined.is-login {
     background-color: rgba(0, 0, 0, 0.4);
   }
+  .input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-transition: background-color 10000s ease-in-out 0s;
+    transition: background-color 10000s ease-in-out 0s;
+  }
+  input:-webkit-autofill:focus {
+    caret-color: #fff !important;
+  }
   #signUp,
   #signUp:visited,
   #passwordReset,

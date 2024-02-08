@@ -41,6 +41,7 @@ body.has-navbar-fixed-top {
 
 // Single column display.
 @media screen and (max-width:768px) {
+
     // ログイン画像を非表示に。
     .login-image {
         display: none;
@@ -118,6 +119,17 @@ body.has-navbar-fixed-top {
         background-color: rgba(0, 0, 0, 0.4);
     }
 
+    // 自動入力した際に背景が白くなる対策。
+    .input:-webkit-autofill {
+        -webkit-text-fill-color: #fff !important;
+        transition: background-color 10000s ease-in-out 0s;
+    }
+
+    // 自動補完後のカーソルが黒になるので、合わせて変更。
+    input:-webkit-autofill:focus {
+        caret-color: #fff !important;
+    }
+
     // ユーザ登録リンク・パスワードリセットの色を設定。
     #signUp,
     #signUp:visited,
@@ -143,4 +155,5 @@ body.has-navbar-fixed-top {
         border-color: #78a0ff;
     }
 }
+
 // END Single column display.
