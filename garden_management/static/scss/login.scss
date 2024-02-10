@@ -32,6 +32,11 @@ body.has-navbar-fixed-top {
     color: #ff78a0;
 }
 
+// 自動入力した際に背景が水色になる対策。
+.input:-webkit-autofill {
+    transition: background-color 10000s ease-in-out 0s;
+}
+
 // Adjustment of line breaks in app info text.
 @media screen and (max-width:832px) {
     .br-pc {

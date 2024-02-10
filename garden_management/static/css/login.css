@@ -27,6 +27,11 @@ body.has-navbar-fixed-top {
   color: #ff78a0;
 }
 
+.input:-webkit-autofill {
+  -webkit-transition: background-color 10000s ease-in-out 0s;
+  transition: background-color 10000s ease-in-out 0s;
+}
+
 @media screen and (max-width: 832px) {
   .br-pc {
     display: none;
