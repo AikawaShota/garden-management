@@ -1,3 +1,0 @@
-./venv/Scripts/Activate.ps1
-python ./garden_management/management.py runserver localhost:8000
-
